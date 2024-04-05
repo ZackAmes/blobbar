@@ -1,0 +1,20 @@
+kind = "DojoModel"
+class_hash = "0x673577a3165c1ebee9df873b5f01ac4c667124923d48ef8a38d0e43d3f5d7d4"
+original_class_hash = "0x673577a3165c1ebee9df873b5f01ac4c667124923d48ef8a38d0e43d3f5d7d4"
+abi = "manifests/dev/abis/base/models/blobbar_models_bar_tile.json"
+name = "blobbar::models::bar::tile"
+
+[[members]]
+name = "x"
+type = "u8"
+key = true
+
+[[members]]
+name = "y"
+type = "u8"
+key = true
+
+[[members]]
+name = "tileType"
+type = "TileType"
+key = false

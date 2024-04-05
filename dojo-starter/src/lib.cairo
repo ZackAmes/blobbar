@@ -3,8 +3,10 @@ mod systems {
 }
 
 mod models {
-    mod moves;
     mod position;
+    mod types;
+    mod bar;
+    mod blobtender;
 }
 
 mod tests {

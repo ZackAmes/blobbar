@@ -130,22 +130,18 @@
   },
   {
     "type": "enum",
-    "name": "blobbar::models::types::DrinkType",
+    "name": "blobbar::models::types::IngredientType",
     "variants": [
-      {
-        "name": "None",
-        "type": "()"
-      },
       {
         "name": "Grog",
         "type": "()"
       },
       {
-        "name": "Rum",
+        "name": "Mead",
         "type": "()"
       },
       {
-        "name": "Vodka",
+        "name": "Whiskey",
         "type": "()"
       },
       {
@@ -154,10 +150,6 @@
       },
       {
         "name": "Juice",
-        "type": "()"
-      },
-      {
-        "name": "Syrup",
         "type": "()"
       }
     ]
@@ -184,7 +176,7 @@
       },
       {
         "name": "Ingredient",
-        "type": "blobbar::models::types::DrinkType"
+        "type": "blobbar::models::types::IngredientType"
       }
     ]
   },

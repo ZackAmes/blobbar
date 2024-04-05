@@ -20,7 +20,7 @@ mod actions {
 
     use starknet::{ContractAddress, get_caller_address};
     use blobbar::models::{
-                        types::{Level, Direction, TileType, DrinkType, Vec2}, 
+                        types::{Level, Direction, TileType, DrinkType, IngredientType, Vec2}, 
                         blobtender::{Blobtender, BlobtenderTrait}};
 
     #[abi(embed_v0)]
@@ -50,6 +50,7 @@ mod actions {
                         2 => TileType::Bar,
                         3 => TileType::Bar,
                         4 => TileType::Bar,
+                        5=> TileType::Bar,
                         _ => TileType::None
                     }
                 },
@@ -59,17 +60,19 @@ mod actions {
                         1 => TileType::Ground,
                         2 => TileType::Ground,
                         3 => TileType::Ground,
-                        4 => TileType::Trash,
+                        4 => TileType::Ground,
+                        5 => TileType::Trash,
                         _ => TileType::None
                     }
                 },
                 2 => {
                     match vec.x {
                         0 => TileType::Bar,
-                        1 => TileType::Ingredient(DrinkType::Grog),
-                        2 => TileType::Ingredient(DrinkType::Rum),
-                        3 => TileType::Ingredient(DrinkType::Soda),
-                        4 => TileType::Bar,
+                        1 => TileType::Ingredient(IngredientType::Grog),
+                        2 => TileType::Ingredient(IngredientType::Mead),
+                        3 => TileType::Ingredient(IngredientType::Soda),
+                        4 => TileType::Ingredient(IngredientType::Juice),
+                        5 => TileType::Bar,
                         _ => TileType::None
                     }
                 },

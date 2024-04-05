@@ -5,7 +5,7 @@ enum TileType {
     Ground,
     Trash,
     Bar,
-    Ingredient: DrinkType,
+    Ingredient: IngredientType,
 
 }
 
@@ -80,12 +80,28 @@ enum IngredientType {
 //Courtly Cooler + Mead = Chivalrous Chalice
 
 #[generate_trait]
-impl DrinkType of DrinkTypeTrait {
+impl DrinkTypeImpl of DrinkTypeTrait {
     
     fn combine(self: DrinkType, to_add: IngredientType) -> DrinkType {
         match self {
             DrinkType::None => {
-                to_add
+                match to_add {
+                    IngredientType::Grog => {
+                        DrinkType::Grog
+                    },
+                    IngredientType::Mead => {
+                        DrinkType::Mead
+                    },
+                    IngredientType::Whiskey => {
+                        DrinkType::Whiskey
+                    },
+                    IngredientType::Soda => {
+                        DrinkType::Soda
+                    },
+                    IngredientType::Juice => {
+                        DrinkType::Juice
+                    }
+                }
             },
             DrinkType::Ew => {
                 DrinkType::Ew

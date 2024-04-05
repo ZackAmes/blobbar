@@ -1,6 +1,6 @@
 kind = "DojoModel"
-class_hash = "0x655d970f558fb8ce535a8e9461a7f2691da04a79687a83dc85fad54da1c355a"
-original_class_hash = "0x655d970f558fb8ce535a8e9461a7f2691da04a79687a83dc85fad54da1c355a"
+class_hash = "0x2940b86fddfdf518d8f0a0c0711126a8aae25418f6d59e49dffb45a99085565"
+original_class_hash = "0x2940b86fddfdf518d8f0a0c0711126a8aae25418f6d59e49dffb45a99085565"
 abi = "manifests/dev/abis/base/models/blobbar_models_blobtender_blobtender.json"
 name = "blobbar::models::blobtender::blobtender"
 

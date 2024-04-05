@@ -20,7 +20,7 @@ mod actions {
     use super::{IActions, IActionsComputed, next_position};
 
     use starknet::{ContractAddress, get_caller_address};
-    use blobbar::models::{position::{Position, Vec2}, types::{Level, Direction, TileType}, blobtender::{Blobtender}};
+    use blobbar::models::{position::{Position, Vec2}, types::{Level, Direction, TileType, DrinkType}, blobtender::{Blobtender}};
 
     #[abi(embed_v0)]
     impl ActionsImpl of IActions<ContractState> {
@@ -31,14 +31,49 @@ mod actions {
         }
 
         fn move(world: IWorldDispatcher, direction: Direction) {
-        
+            
         }
     }
 
     #[abi(embed_v0)]
     impl ActionsComputedImpl of IActionsComputed<ContractState> {
         fn tile_type(level: u8, vec: Vec2) -> TileType {
-            TileType::None
+            //for level 1
+            match vec.y {
+                0 => {
+                    match vec.x {
+                        0 => TileType::Bar,
+                        1 => TileType::Bar,
+                        2 => TileType::Bar,
+                        3 => TileType::Bar,
+                        4 => TileType::Bar,
+                        _ => TileType::None
+                    }
+                },
+                1 => {
+                    match vec.x {
+                        0 => TileType::Trash,
+                        1 => TileType::Ground,
+                        2 => TileType::Ground,
+                        3 => TileType::Ground,
+                        4 => TileType::Trash,
+                        _ => TileType::None
+                    }
+                },
+                2 => {
+                    match vec.x {
+                        0 => TileType::Bar,
+                        1 => TileType::Ingredient(DrinkType::Grog),
+                        2 => TileType::Ingredient(DrinkType::Rum),
+                        3 => TileType::Ingredient(DrinkType::Soda),
+                        4 => TileType::Bar,
+                        _ => TileType::None
+                    }
+                },
+                _ => {
+                    TileType::None
+                }
+            }
         }
     }
 

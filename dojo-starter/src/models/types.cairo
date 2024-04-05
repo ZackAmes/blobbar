@@ -1,11 +1,12 @@
 
-#[derive(Serde, Copy, Drop, Introspect)]
+#[derive(Serde, Copy, Drop)]
 enum TileType {
     None,
     Ground,
-    Drink,
     Trash,
     Bar,
+    Ingredient: DrinkType,
+
 }
 
 #[derive(Serde, Copy, Drop, Introspect)]
@@ -21,8 +22,14 @@ enum Level {
 enum DrinkType {
     None,
     Grog,
-    Wine
+    Rum, 
+    Vodka,
+    Soda,
+    Juice,
+    Syrup
 }
+
+
 
 #[derive(Serde, Copy, Drop, Introspect)]
 enum Direction {

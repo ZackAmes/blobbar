@@ -199,7 +199,23 @@
         "type": "()"
       },
       {
-        "name": "Wine",
+        "name": "Rum",
+        "type": "()"
+      },
+      {
+        "name": "Vodka",
+        "type": "()"
+      },
+      {
+        "name": "Soda",
+        "type": "()"
+      },
+      {
+        "name": "Juice",
+        "type": "()"
+      },
+      {
+        "name": "Syrup",
         "type": "()"
       }
     ]

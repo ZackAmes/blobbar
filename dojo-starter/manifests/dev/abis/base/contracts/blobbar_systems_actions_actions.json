@@ -130,6 +130,40 @@
   },
   {
     "type": "enum",
+    "name": "blobbar::models::types::DrinkType",
+    "variants": [
+      {
+        "name": "None",
+        "type": "()"
+      },
+      {
+        "name": "Grog",
+        "type": "()"
+      },
+      {
+        "name": "Rum",
+        "type": "()"
+      },
+      {
+        "name": "Vodka",
+        "type": "()"
+      },
+      {
+        "name": "Soda",
+        "type": "()"
+      },
+      {
+        "name": "Juice",
+        "type": "()"
+      },
+      {
+        "name": "Syrup",
+        "type": "()"
+      }
+    ]
+  },
+  {
+    "type": "enum",
     "name": "blobbar::models::types::TileType",
     "variants": [
       {
@@ -141,16 +175,16 @@
         "type": "()"
       },
       {
-        "name": "Drink",
-        "type": "()"
-      },
-      {
         "name": "Trash",
         "type": "()"
       },
       {
         "name": "Bar",
         "type": "()"
+      },
+      {
+        "name": "Ingredient",
+        "type": "blobbar::models::types::DrinkType"
       }
     ]
   },

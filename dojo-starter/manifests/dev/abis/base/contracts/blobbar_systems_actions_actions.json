@@ -111,6 +111,77 @@
   },
   {
     "type": "impl",
+    "name": "ActionsComputedImpl",
+    "interface_name": "blobbar::systems::actions::IActionsComputed"
+  },
+  {
+    "type": "struct",
+    "name": "blobbar::models::position::Vec2",
+    "members": [
+      {
+        "name": "x",
+        "type": "core::integer::u8"
+      },
+      {
+        "name": "y",
+        "type": "core::integer::u8"
+      }
+    ]
+  },
+  {
+    "type": "enum",
+    "name": "blobbar::models::types::TileType",
+    "variants": [
+      {
+        "name": "None",
+        "type": "()"
+      },
+      {
+        "name": "Ground",
+        "type": "()"
+      },
+      {
+        "name": "Drink",
+        "type": "()"
+      },
+      {
+        "name": "Trash",
+        "type": "()"
+      },
+      {
+        "name": "Bar",
+        "type": "()"
+      }
+    ]
+  },
+  {
+    "type": "interface",
+    "name": "blobbar::systems::actions::IActionsComputed",
+    "items": [
+      {
+        "type": "function",
+        "name": "tile_type",
+        "inputs": [
+          {
+            "name": "level",
+            "type": "core::integer::u8"
+          },
+          {
+            "name": "vec",
+            "type": "blobbar::models::position::Vec2"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "blobbar::models::types::TileType"
+          }
+        ],
+        "state_mutability": "view"
+      }
+    ]
+  },
+  {
+    "type": "impl",
     "name": "UpgradableImpl",
     "interface_name": "dojo::components::upgradeable::IUpgradeable"
   },

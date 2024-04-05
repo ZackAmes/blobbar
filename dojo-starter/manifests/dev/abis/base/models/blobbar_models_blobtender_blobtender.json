@@ -191,6 +191,10 @@
     "name": "blobbar::models::types::DrinkType",
     "variants": [
       {
+        "name": "None",
+        "type": "()"
+      },
+      {
         "name": "Grog",
         "type": "()"
       },

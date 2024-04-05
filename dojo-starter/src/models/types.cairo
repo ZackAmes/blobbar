@@ -10,6 +10,7 @@ enum TileType {
 
 #[derive(Serde, Copy, Drop, Introspect)]
 enum Level {
+    None,
     One,
     Two,
     Three,
@@ -18,6 +19,7 @@ enum Level {
 
 #[derive(Serde, Copy, Drop, Introspect)]
 enum DrinkType {
+    None,
     Grog,
     Wine
 }

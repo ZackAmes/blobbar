@@ -173,8 +173,34 @@
     "interface_name": "blobbar::models::blobtender::Iblobtender"
   },
   {
+    "type": "enum",
+    "name": "blobbar::models::types::Level",
+    "variants": [
+      {
+        "name": "None",
+        "type": "()"
+      },
+      {
+        "name": "One",
+        "type": "()"
+      },
+      {
+        "name": "Two",
+        "type": "()"
+      },
+      {
+        "name": "Three",
+        "type": "()"
+      },
+      {
+        "name": "Endless",
+        "type": "()"
+      }
+    ]
+  },
+  {
     "type": "struct",
-    "name": "blobbar::models::position::Vec2",
+    "name": "blobbar::models::types::Vec2",
     "members": [
       {
         "name": "x",
@@ -229,8 +255,12 @@
         "type": "core::starknet::contract_address::ContractAddress"
       },
       {
+        "name": "level",
+        "type": "blobbar::models::types::Level"
+      },
+      {
         "name": "position",
-        "type": "blobbar::models::position::Vec2"
+        "type": "blobbar::models::types::Vec2"
       },
       {
         "name": "serving",

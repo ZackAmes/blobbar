@@ -116,7 +116,7 @@
   },
   {
     "type": "struct",
-    "name": "blobbar::models::position::Vec2",
+    "name": "blobbar::models::types::Vec2",
     "members": [
       {
         "name": "x",
@@ -202,7 +202,7 @@
           },
           {
             "name": "vec",
-            "type": "blobbar::models::position::Vec2"
+            "type": "blobbar::models::types::Vec2"
           }
         ],
         "outputs": [

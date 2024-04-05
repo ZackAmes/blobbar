@@ -1,6 +1,5 @@
-use blobbar::models::types::{Direction, TileType};
-use blobbar::models::position::{Position, Vec2};
-
+use blobbar::models::types::{Direction, TileType, Vec2};
+use blobbar::models::blobtender::{Blobtender};
 
 // define the interface
 #[dojo::interface]
@@ -17,17 +16,21 @@ trait IActionsComputed {
 // dojo decorator
 #[dojo::contract]
 mod actions {
-    use super::{IActions, IActionsComputed, next_position};
+    use super::{IActions, IActionsComputed};
 
     use starknet::{ContractAddress, get_caller_address};
-    use blobbar::models::{position::{Position, Vec2}, types::{Level, Direction, TileType, DrinkType}, blobtender::{Blobtender}};
+    use blobbar::models::{
+                        types::{Level, Direction, TileType, DrinkType, Vec2}, 
+                        blobtender::{Blobtender, BlobtenderTrait}};
 
     #[abi(embed_v0)]
     impl ActionsImpl of IActions<ContractState> {
         fn spawn(world: IWorldDispatcher) {
             let player = get_caller_address();
-            let btender = get!(world, player, (Blobtender));
-            
+            let blobtender = get!(world, player, (Blobtender));
+            let level = blobtender.level;
+            assert!(level == Level::None, "already spawned");
+            set!(world, (blobtender));
         }
 
         fn move(world: IWorldDispatcher, direction: Direction) {
@@ -80,13 +83,13 @@ mod actions {
     
 }
 
-fn next_position(mut position: Position, direction: Direction) -> Position {
+fn next_state(mut blobtender: Blobtender, direction: Direction) -> Blobtender {
     match direction {
-        Direction::None => { return position; },
-        Direction::Left => { position.vec.x -= 1; },
-        Direction::Right => { position.vec.x += 1; },
-        Direction::Up => { position.vec.y -= 1; },
-        Direction::Down => { position.vec.y += 1; },
+        Direction::None => { return blobtender; },
+        Direction::Left => { blobtender.position.x -= 1; },
+        Direction::Right => { blobtender.position.x += 1; },
+        Direction::Up => { blobtender.position.y -= 1; },
+        Direction::Down => { blobtender.position.y += 1; },
     };
-    position
+    blobtender
 }

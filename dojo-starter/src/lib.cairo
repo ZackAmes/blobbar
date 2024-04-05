@@ -3,7 +3,6 @@ mod systems {
 }
 
 mod models {
-    mod position;
     mod types;
     mod blobtender;
 }

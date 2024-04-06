@@ -189,10 +189,6 @@
         "name": "tile_type",
         "inputs": [
           {
-            "name": "level",
-            "type": "core::integer::u8"
-          },
-          {
             "name": "vec",
             "type": "blobbar::models::types::Vec2"
           }

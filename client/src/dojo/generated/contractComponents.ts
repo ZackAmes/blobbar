@@ -8,35 +8,21 @@ export type ContractComponents = Awaited<
 
 export function defineContractComponents(world: World) {
     return {
-        Moves: (() => {
+        Blobtender: (() => {
             return defineComponent(
                 world,
                 {
                     player: RecsType.BigInt,
-                    remaining: RecsType.Number,
-                    last_direction: RecsType.Number,
+                    level: RecsType.Number,
+                    position: { x: RecsType.Number, y: RecsType.Number },
+                    serving: RecsType.Number,
+
                 },
                 {
                     metadata: {
-                        name: "Moves",
-                        types: ["contractaddress", "u8", "enum"],
-                        customTypes: ["Direction"],
-                    },
-                }
-            );
-        })(),
-        Position: (() => {
-            return defineComponent(
-                world,
-                {
-                    player: RecsType.BigInt,
-                    vec: { x: RecsType.Number, y: RecsType.Number },
-                },
-                {
-                    metadata: {
-                        name: "Position",
-                        types: ["contractaddress", "u32", "u32"],
-                        customTypes: ["Vec2"],
+                        name: "Blobtender",
+                        types: ["contractaddress", "enum", "u32", "u32", "enum"],
+                        customTypes: ["Level", "Vec2", "DrinkType"],
                     },
                 }
             );

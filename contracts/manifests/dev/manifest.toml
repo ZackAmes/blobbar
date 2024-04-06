@@ -1,0 +1,55 @@
+[world]
+kind = "Contract"
+class_hash = "0x799bc4e9da10bfb3dd88e6f223c9cfbf7745435cd14f5d69675ea448e578cd"
+original_class_hash = "0x799bc4e9da10bfb3dd88e6f223c9cfbf7745435cd14f5d69675ea448e578cd"
+abi = "abis/deployments/dojo_world_world.json"
+address = "0x43c803d263b1e5ce7fac9d0b883476b0e656a5180d9ea9b845585cb4c20f182"
+transaction_hash = "0x7db352d4ec29ba9fe9cc002fa7a40b81b6599265900ef67db17cdb627d0928"
+block_number = 3
+seed = "blobbar"
+name = "dojo::world::world"
+
+[base]
+kind = "Class"
+class_hash = "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76"
+original_class_hash = "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76"
+name = "dojo::base::base"
+
+[[contracts]]
+kind = "DojoContract"
+address = "0x3dd4f36c116335afd65dd8b8603c548101eb2bf476b971021528ba31f2f1f9c"
+class_hash = "0x1bf465e984d74d274657815552c8560f523267df5c23801656d5bed9535686f"
+original_class_hash = "0x1bf465e984d74d274657815552c8560f523267df5c23801656d5bed9535686f"
+base_class_hash = "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76"
+abi = "abis/deployments/contracts/blobbar_systems_actions_actions.json"
+reads = []
+writes = []
+computed = []
+name = "blobbar::systems::actions::actions"
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x3e395101d4ece911273aabda5a5076bf950ee72fd5713c6b598a08285799d7b"
+original_class_hash = "0x3e395101d4ece911273aabda5a5076bf950ee72fd5713c6b598a08285799d7b"
+abi = "abis/deployments/models/blobbar_models_blobtender_blobtender.json"
+name = "blobbar::models::blobtender::blobtender"
+
+[[models.members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "level"
+type = "Level"
+key = false
+
+[[models.members]]
+name = "position"
+type = "Vec2"
+key = false
+
+[[models.members]]
+name = "serving"
+type = "DrinkType"
+key = false

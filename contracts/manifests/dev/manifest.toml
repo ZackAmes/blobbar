@@ -3,7 +3,7 @@ kind = "Contract"
 class_hash = "0x799bc4e9da10bfb3dd88e6f223c9cfbf7745435cd14f5d69675ea448e578cd"
 original_class_hash = "0x799bc4e9da10bfb3dd88e6f223c9cfbf7745435cd14f5d69675ea448e578cd"
 abi = "abis/deployments/dojo_world_world.json"
-address = "0x446f1f19ba951b59935df72974f8ba6060e5fbb411ca21d3e3e3812e3eb8df8"
+address = "0x43c803d263b1e5ce7fac9d0b883476b0e656a5180d9ea9b845585cb4c20f182"
 transaction_hash = "0x7db352d4ec29ba9fe9cc002fa7a40b81b6599265900ef67db17cdb627d0928"
 block_number = 3
 seed = "blobbar"
@@ -17,7 +17,31 @@ name = "dojo::base::base"
 
 [[contracts]]
 kind = "DojoContract"
-address = "0x2e2ef5d5d3d8d538b2adc5b5848feeba9ea8226c776533cde470cd071ab17d0"
+address = "0x9f7dbda0ced84f68c14ee07b753f1b019651e7c0d26838f65553b6061aeb92"
+class_hash = "0x78dacba0558605242522393491c0222f595164afd2176507c80575c67a147fb"
+original_class_hash = "0x78dacba0558605242522393491c0222f595164afd2176507c80575c67a147fb"
+base_class_hash = "0x0"
+abi = "abis/deployments/contracts/blobbar_blobert_descriptor_Descriptor.json"
+reads = []
+writes = []
+computed = []
+name = "blobbar::blobert::descriptor::Descriptor"
+
+[[contracts]]
+kind = "DojoContract"
+address = "0x6793d351f9e180f451019db2b30ad8d11bb48c4fe6c31f038097f50224190f7"
+class_hash = "0x72258cedf4ad29bf8fac5cc1db9b0114d9a235d98179ee653fdac036eab9a00"
+original_class_hash = "0x72258cedf4ad29bf8fac5cc1db9b0114d9a235d98179ee653fdac036eab9a00"
+base_class_hash = "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76"
+abi = "abis/deployments/contracts/blobbar_blobert_seeder_Seeder.json"
+reads = []
+writes = []
+computed = []
+name = "blobbar::blobert::seeder::Seeder"
+
+[[contracts]]
+kind = "DojoContract"
+address = "0x3dd4f36c116335afd65dd8b8603c548101eb2bf476b971021528ba31f2f1f9c"
 class_hash = "0x7c247b2c1749b82cb87249012f524b494b052edea07470c862d9da49849b95e"
 original_class_hash = "0x7c247b2c1749b82cb87249012f524b494b052edea07470c862d9da49849b95e"
 base_class_hash = "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76"

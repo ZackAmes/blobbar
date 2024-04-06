@@ -660,7 +660,7 @@
         ]
       }
     ],
-    "address": "0x446f1f19ba951b59935df72974f8ba6060e5fbb411ca21d3e3e3812e3eb8df8",
+    "address": "0x43c803d263b1e5ce7fac9d0b883476b0e656a5180d9ea9b845585cb4c20f182",
     "transaction_hash": "0x7db352d4ec29ba9fe9cc002fa7a40b81b6599265900ef67db17cdb627d0928",
     "block_number": 3,
     "seed": "blobbar",
@@ -676,7 +676,513 @@
   "contracts": [
     {
       "kind": "DojoContract",
-      "address": "0x2e2ef5d5d3d8d538b2adc5b5848feeba9ea8226c776533cde470cd071ab17d0",
+      "address": "0x9f7dbda0ced84f68c14ee07b753f1b019651e7c0d26838f65553b6061aeb92",
+      "class_hash": "0x78dacba0558605242522393491c0222f595164afd2176507c80575c67a147fb",
+      "original_class_hash": "0x78dacba0558605242522393491c0222f595164afd2176507c80575c67a147fb",
+      "base_class_hash": "0x0",
+      "abi": [
+        {
+          "type": "impl",
+          "name": "DojoResourceProviderImpl",
+          "interface_name": "dojo::world::IDojoResourceProvider"
+        },
+        {
+          "type": "interface",
+          "name": "dojo::world::IDojoResourceProvider",
+          "items": [
+            {
+              "type": "function",
+              "name": "dojo_resource",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "core::felt252"
+                }
+              ],
+              "state_mutability": "view"
+            }
+          ]
+        },
+        {
+          "type": "impl",
+          "name": "WorldProviderImpl",
+          "interface_name": "dojo::world::IWorldProvider"
+        },
+        {
+          "type": "struct",
+          "name": "dojo::world::IWorldDispatcher",
+          "members": [
+            {
+              "name": "contract_address",
+              "type": "core::starknet::contract_address::ContractAddress"
+            }
+          ]
+        },
+        {
+          "type": "interface",
+          "name": "dojo::world::IWorldProvider",
+          "items": [
+            {
+              "type": "function",
+              "name": "world",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "dojo::world::IWorldDispatcher"
+                }
+              ],
+              "state_mutability": "view"
+            }
+          ]
+        },
+        {
+          "type": "impl",
+          "name": "DescriptorImpl",
+          "interface_name": "blobbar::blobert::descriptor::IDescriptor"
+        },
+        {
+          "type": "struct",
+          "name": "core::byte_array::ByteArray",
+          "members": [
+            {
+              "name": "data",
+              "type": "core::array::Array::<core::bytes_31::bytes31>"
+            },
+            {
+              "name": "pending_word",
+              "type": "core::felt252"
+            },
+            {
+              "name": "pending_word_len",
+              "type": "core::integer::u32"
+            }
+          ]
+        },
+        {
+          "type": "struct",
+          "name": "blobbar::blobert::types::seeder::Seed",
+          "members": [
+            {
+              "name": "background",
+              "type": "core::integer::u8"
+            },
+            {
+              "name": "armour",
+              "type": "core::integer::u8"
+            },
+            {
+              "name": "jewelry",
+              "type": "core::integer::u8"
+            },
+            {
+              "name": "mask",
+              "type": "core::integer::u8"
+            },
+            {
+              "name": "weapon",
+              "type": "core::integer::u8"
+            }
+          ]
+        },
+        {
+          "type": "interface",
+          "name": "blobbar::blobert::descriptor::IDescriptor",
+          "items": [
+            {
+              "type": "function",
+              "name": "armour_count",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "core::integer::u8"
+                }
+              ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "armour",
+              "inputs": [
+                {
+                  "name": "index",
+                  "type": "core::integer::u8"
+                }
+              ],
+              "outputs": [
+                {
+                  "type": "(core::byte_array::ByteArray, core::byte_array::ByteArray)"
+                }
+              ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "JEWELRY_COUNT",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "core::integer::u8"
+                }
+              ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "jewelry",
+              "inputs": [
+                {
+                  "name": "index",
+                  "type": "core::integer::u8"
+                }
+              ],
+              "outputs": [
+                {
+                  "type": "(core::byte_array::ByteArray, core::byte_array::ByteArray)"
+                }
+              ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "mask_count",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "core::integer::u8"
+                }
+              ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "mask",
+              "inputs": [
+                {
+                  "name": "index",
+                  "type": "core::integer::u8"
+                }
+              ],
+              "outputs": [
+                {
+                  "type": "(core::byte_array::ByteArray, core::byte_array::ByteArray)"
+                }
+              ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "weapon_count",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "core::integer::u8"
+                }
+              ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "weapon",
+              "inputs": [
+                {
+                  "name": "index",
+                  "type": "core::integer::u8"
+                }
+              ],
+              "outputs": [
+                {
+                  "type": "(core::byte_array::ByteArray, core::byte_array::ByteArray)"
+                }
+              ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "svg_image",
+              "inputs": [
+                {
+                  "name": "seed",
+                  "type": "blobbar::blobert::types::seeder::Seed"
+                }
+              ],
+              "outputs": [
+                {
+                  "type": "core::byte_array::ByteArray"
+                }
+              ],
+              "state_mutability": "view"
+            }
+          ]
+        },
+        {
+          "type": "impl",
+          "name": "UpgradableImpl",
+          "interface_name": "dojo::components::upgradeable::IUpgradeable"
+        },
+        {
+          "type": "interface",
+          "name": "dojo::components::upgradeable::IUpgradeable",
+          "items": [
+            {
+              "type": "function",
+              "name": "upgrade",
+              "inputs": [
+                {
+                  "name": "new_class_hash",
+                  "type": "core::starknet::class_hash::ClassHash"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "name": "dojo::components::upgradeable::upgradeable::Upgraded",
+          "kind": "struct",
+          "members": [
+            {
+              "name": "class_hash",
+              "type": "core::starknet::class_hash::ClassHash",
+              "kind": "data"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "name": "dojo::components::upgradeable::upgradeable::Event",
+          "kind": "enum",
+          "variants": [
+            {
+              "name": "Upgraded",
+              "type": "dojo::components::upgradeable::upgradeable::Upgraded",
+              "kind": "nested"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "name": "blobbar::blobert::descriptor::Descriptor::Event",
+          "kind": "enum",
+          "variants": [
+            {
+              "name": "UpgradeableEvent",
+              "type": "dojo::components::upgradeable::upgradeable::Event",
+              "kind": "nested"
+            }
+          ]
+        }
+      ],
+      "reads": [],
+      "writes": [],
+      "computed": [],
+      "name": "blobbar::blobert::descriptor::Descriptor"
+    },
+    {
+      "kind": "DojoContract",
+      "address": "0x6793d351f9e180f451019db2b30ad8d11bb48c4fe6c31f038097f50224190f7",
+      "class_hash": "0x72258cedf4ad29bf8fac5cc1db9b0114d9a235d98179ee653fdac036eab9a00",
+      "original_class_hash": "0x72258cedf4ad29bf8fac5cc1db9b0114d9a235d98179ee653fdac036eab9a00",
+      "base_class_hash": "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76",
+      "abi": [
+        {
+          "type": "impl",
+          "name": "DojoResourceProviderImpl",
+          "interface_name": "dojo::world::IDojoResourceProvider"
+        },
+        {
+          "type": "interface",
+          "name": "dojo::world::IDojoResourceProvider",
+          "items": [
+            {
+              "type": "function",
+              "name": "dojo_resource",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "core::felt252"
+                }
+              ],
+              "state_mutability": "view"
+            }
+          ]
+        },
+        {
+          "type": "impl",
+          "name": "WorldProviderImpl",
+          "interface_name": "dojo::world::IWorldProvider"
+        },
+        {
+          "type": "struct",
+          "name": "dojo::world::IWorldDispatcher",
+          "members": [
+            {
+              "name": "contract_address",
+              "type": "core::starknet::contract_address::ContractAddress"
+            }
+          ]
+        },
+        {
+          "type": "interface",
+          "name": "dojo::world::IWorldProvider",
+          "items": [
+            {
+              "type": "function",
+              "name": "world",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "dojo::world::IWorldDispatcher"
+                }
+              ],
+              "state_mutability": "view"
+            }
+          ]
+        },
+        {
+          "type": "impl",
+          "name": "Seeder",
+          "interface_name": "blobbar::blobert::seeder::ISeeder"
+        },
+        {
+          "type": "struct",
+          "name": "core::integer::u256",
+          "members": [
+            {
+              "name": "low",
+              "type": "core::integer::u128"
+            },
+            {
+              "name": "high",
+              "type": "core::integer::u128"
+            }
+          ]
+        },
+        {
+          "type": "struct",
+          "name": "blobbar::blobert::types::seeder::Seed",
+          "members": [
+            {
+              "name": "background",
+              "type": "core::integer::u8"
+            },
+            {
+              "name": "armour",
+              "type": "core::integer::u8"
+            },
+            {
+              "name": "jewelry",
+              "type": "core::integer::u8"
+            },
+            {
+              "name": "mask",
+              "type": "core::integer::u8"
+            },
+            {
+              "name": "weapon",
+              "type": "core::integer::u8"
+            }
+          ]
+        },
+        {
+          "type": "interface",
+          "name": "blobbar::blobert::seeder::ISeeder",
+          "items": [
+            {
+              "type": "function",
+              "name": "generate_seed",
+              "inputs": [
+                {
+                  "name": "token_id",
+                  "type": "core::integer::u256"
+                },
+                {
+                  "name": "descriptor_addr",
+                  "type": "core::starknet::contract_address::ContractAddress"
+                },
+                {
+                  "name": "salt",
+                  "type": "core::felt252"
+                }
+              ],
+              "outputs": [
+                {
+                  "type": "blobbar::blobert::types::seeder::Seed"
+                }
+              ],
+              "state_mutability": "view"
+            }
+          ]
+        },
+        {
+          "type": "impl",
+          "name": "UpgradableImpl",
+          "interface_name": "dojo::components::upgradeable::IUpgradeable"
+        },
+        {
+          "type": "interface",
+          "name": "dojo::components::upgradeable::IUpgradeable",
+          "items": [
+            {
+              "type": "function",
+              "name": "upgrade",
+              "inputs": [
+                {
+                  "name": "new_class_hash",
+                  "type": "core::starknet::class_hash::ClassHash"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "name": "dojo::components::upgradeable::upgradeable::Upgraded",
+          "kind": "struct",
+          "members": [
+            {
+              "name": "class_hash",
+              "type": "core::starknet::class_hash::ClassHash",
+              "kind": "data"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "name": "dojo::components::upgradeable::upgradeable::Event",
+          "kind": "enum",
+          "variants": [
+            {
+              "name": "Upgraded",
+              "type": "dojo::components::upgradeable::upgradeable::Upgraded",
+              "kind": "nested"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "name": "blobbar::blobert::seeder::Seeder::Event",
+          "kind": "enum",
+          "variants": [
+            {
+              "name": "UpgradeableEvent",
+              "type": "dojo::components::upgradeable::upgradeable::Event",
+              "kind": "nested"
+            }
+          ]
+        }
+      ],
+      "reads": [],
+      "writes": [],
+      "computed": [],
+      "name": "blobbar::blobert::seeder::Seeder"
+    },
+    {
+      "kind": "DojoContract",
+      "address": "0x3dd4f36c116335afd65dd8b8603c548101eb2bf476b971021528ba31f2f1f9c",
       "class_hash": "0x7c247b2c1749b82cb87249012f524b494b052edea07470c862d9da49849b95e",
       "original_class_hash": "0x7c247b2c1749b82cb87249012f524b494b052edea07470c862d9da49849b95e",
       "base_class_hash": "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76",

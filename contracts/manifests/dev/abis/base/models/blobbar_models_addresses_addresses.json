@@ -169,190 +169,48 @@
   },
   {
     "type": "impl",
-    "name": "blobtenderImpl",
-    "interface_name": "blobbar::models::blobtender::Iblobtender"
+    "name": "addressesImpl",
+    "interface_name": "blobbar::models::addresses::Iaddresses"
   },
   {
     "type": "enum",
-    "name": "blobbar::models::types::Level",
+    "name": "core::bool",
     "variants": [
       {
-        "name": "None",
+        "name": "False",
         "type": "()"
       },
       {
-        "name": "One",
-        "type": "()"
-      },
-      {
-        "name": "Two",
-        "type": "()"
-      },
-      {
-        "name": "Three",
-        "type": "()"
-      },
-      {
-        "name": "Endless",
+        "name": "True",
         "type": "()"
       }
     ]
   },
   {
     "type": "struct",
-    "name": "blobbar::models::types::Vec2",
+    "name": "blobbar::models::addresses::Addresses",
     "members": [
       {
-        "name": "x",
+        "name": "key",
         "type": "core::integer::u8"
       },
       {
-        "name": "y",
-        "type": "core::integer::u8"
-      }
-    ]
-  },
-  {
-    "type": "enum",
-    "name": "blobbar::models::types::DrinkType",
-    "variants": [
-      {
-        "name": "None",
-        "type": "()"
-      },
-      {
-        "name": "Ew",
-        "type": "()"
-      },
-      {
-        "name": "Grog",
-        "type": "()"
-      },
-      {
-        "name": "Mead",
-        "type": "()"
-      },
-      {
-        "name": "Whiskey",
-        "type": "()"
-      },
-      {
-        "name": "Soda",
-        "type": "()"
-      },
-      {
-        "name": "Juice",
-        "type": "()"
-      },
-      {
-        "name": "MeadSprtiz",
-        "type": "()"
-      },
-      {
-        "name": "KnightsSpritz",
-        "type": "()"
-      },
-      {
-        "name": "RoyalHoneyedNectar",
-        "type": "()"
-      },
-      {
-        "name": "NobleNectar",
-        "type": "()"
-      },
-      {
-        "name": "CastleCitrusFizz",
-        "type": "()"
-      },
-      {
-        "name": "RegalRefresher",
-        "type": "()"
-      },
-      {
-        "name": "MonarchsMingle",
-        "type": "()"
-      },
-      {
-        "name": "CourtlyCooler",
-        "type": "()"
-      },
-      {
-        "name": "WizardsWhirl",
-        "type": "()"
-      },
-      {
-        "name": "MajesticMetheglin",
-        "type": "()"
-      },
-      {
-        "name": "SovereignSwirl",
-        "type": "()"
-      },
-      {
-        "name": "ChivalrousChalice",
-        "type": "()"
-      }
-    ]
-  },
-  {
-    "type": "struct",
-    "name": "blobbar::blobert::types::seeder::Seed",
-    "members": [
-      {
-        "name": "background",
-        "type": "core::integer::u8"
-      },
-      {
-        "name": "armour",
-        "type": "core::integer::u8"
-      },
-      {
-        "name": "jewelry",
-        "type": "core::integer::u8"
-      },
-      {
-        "name": "mask",
-        "type": "core::integer::u8"
-      },
-      {
-        "name": "weapon",
-        "type": "core::integer::u8"
-      }
-    ]
-  },
-  {
-    "type": "struct",
-    "name": "blobbar::models::blobtender::Blobtender",
-    "members": [
-      {
-        "name": "player",
+        "name": "seeder",
         "type": "core::starknet::contract_address::ContractAddress"
       },
       {
-        "name": "level",
-        "type": "blobbar::models::types::Level"
+        "name": "descriptor",
+        "type": "core::starknet::contract_address::ContractAddress"
       },
       {
-        "name": "position",
-        "type": "blobbar::models::types::Vec2"
-      },
-      {
-        "name": "serving",
-        "type": "blobbar::models::types::DrinkType"
-      },
-      {
-        "name": "points",
-        "type": "core::integer::u32"
-      },
-      {
-        "name": "blobert",
-        "type": "blobbar::blobert::types::seeder::Seed"
+        "name": "set",
+        "type": "core::bool"
       }
     ]
   },
   {
     "type": "interface",
-    "name": "blobbar::models::blobtender::Iblobtender",
+    "name": "blobbar::models::addresses::Iaddresses",
     "items": [
       {
         "type": "function",
@@ -360,7 +218,7 @@
         "inputs": [
           {
             "name": "model",
-            "type": "blobbar::models::blobtender::Blobtender"
+            "type": "blobbar::models::addresses::Addresses"
           }
         ],
         "outputs": [],
@@ -370,7 +228,7 @@
   },
   {
     "type": "event",
-    "name": "blobbar::models::blobtender::blobtender::Event",
+    "name": "blobbar::models::addresses::addresses::Event",
     "kind": "enum",
     "variants": []
   }

@@ -1,11 +1,13 @@
 use blobbar::models::types::{Direction, TileType, Vec2};
 use blobbar::models::blobtender::{Blobtender};
+use starknet::ContractAddress;
 
 // define the interface
 #[dojo::interface]
 trait IActions {
     fn spawn();
     fn move(direction: Direction);
+    fn set_addresses(seeder: ContractAddress, descriptor: ContractAddress);
 }
 
 #[dojo::interface]
@@ -21,7 +23,13 @@ mod actions {
     use starknet::{ContractAddress, get_caller_address};
     use blobbar::models::{
                         types::{Level, Direction, TileType, DrinkType, DrinkTypeTrait, IngredientType, Vec2}, 
-                        blobtender::{Blobtender, BlobtenderTrait}};
+                        blobtender::{Blobtender, BlobtenderTrait},
+                        addresses::{Addresses}};
+    use blobbar::blobert::seeder::{ISeederDispatcher, ISeederDispatcherTrait};
+    use blobbar::blobert::descriptor::{IDescriptorDispatcher, IDescriptorDispatcherTrait};
+    use blobbar::blobert::types::seeder::Seed;
+
+    const ADDRESS_KEY: u8 = 69;
 
     #[abi(embed_v0)]
     impl ActionsImpl of IActions<ContractState> {
@@ -30,8 +38,17 @@ mod actions {
             let blobtender = get!(world, player, (Blobtender));
             let level = blobtender.level;
             assert!(level == Level::None, "already spawned");
-            let blobtender = BlobtenderTrait::new(player);
+            let test_seed = Seed {background: 0, armour: 0, mask: 0, weapon: 0, jewelry: 0};
+            let blobtender = BlobtenderTrait::new(player, test_seed);
             set!(world, (blobtender));
+        }
+
+        fn set_addresses(world: IWorldDispatcher, seeder: ContractAddress, descriptor: ContractAddress) {
+            let mut addresses = get!(world, ADDRESS_KEY, (Addresses));
+            assert!(!addresses.set, "already set");
+            addresses = Addresses { key: ADDRESS_KEY, seeder, descriptor, set: true};
+            set!(world, (addresses));
+
         }
 
         fn move(world: IWorldDispatcher, direction: Direction) {

@@ -1,10 +1,9 @@
 use blobbar::blobert::types::seeder::Seed;
 
-#[starknet::interface]
+#[dojo::interface]
 trait ISeeder<TContractState> {
     fn generate_seed(
         self: @TContractState,
-        token_id: u256,
         descriptor_addr: starknet::ContractAddress,
         salt: felt252
     ) -> Seed;
@@ -12,7 +11,7 @@ trait ISeeder<TContractState> {
 
 
 
-#[starknet::contract]
+#[dojo::contract]
 mod Seeder {
     use alexandria_math::BitShift;
     use blobbar::blobert::descriptor::{
@@ -24,15 +23,11 @@ mod Seeder {
 
     use starknet::ContractAddress;
 
-
-    #[storage]
-    struct Storage {}
-
     #[abi(embed_v0)]
     impl Seeder of super::ISeeder<ContractState> {
+
         fn generate_seed(
             self: @ContractState,
-            token_id: u256,
             descriptor_addr: starknet::ContractAddress,
             salt: felt252
         ) -> Seed {
@@ -40,7 +35,7 @@ mod Seeder {
 
             let block_timestamp = starknet::get_block_timestamp();
             let randomness: u256 = poseidon_hash_span(
-                array![block_timestamp.into(), token_id.low.into(), token_id.high.into(), salt]
+                array![block_timestamp.into(), salt]
                     .span()
             )
                 .into();

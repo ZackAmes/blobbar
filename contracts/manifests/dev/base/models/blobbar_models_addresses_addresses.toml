@@ -1,0 +1,25 @@
+kind = "DojoModel"
+class_hash = "0x60ae977c28eaf251905cb160bfd50962a979b950d2afae844f6102d1d506d72"
+original_class_hash = "0x60ae977c28eaf251905cb160bfd50962a979b950d2afae844f6102d1d506d72"
+abi = "manifests/dev/abis/base/models/blobbar_models_addresses_addresses.json"
+name = "blobbar::models::addresses::addresses"
+
+[[members]]
+name = "key"
+type = "u8"
+key = true
+
+[[members]]
+name = "seeder"
+type = "ContractAddress"
+key = false
+
+[[members]]
+name = "descriptor"
+type = "ContractAddress"
+key = false
+
+[[members]]
+name = "set"
+type = "bool"
+key = false

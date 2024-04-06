@@ -55,163 +55,73 @@
   },
   {
     "type": "impl",
-    "name": "ActionsImpl",
-    "interface_name": "blobbar::systems::actions::IActions"
-  },
-  {
-    "type": "enum",
-    "name": "blobbar::models::types::Direction",
-    "variants": [
-      {
-        "name": "None",
-        "type": "()"
-      },
-      {
-        "name": "Left",
-        "type": "()"
-      },
-      {
-        "name": "Right",
-        "type": "()"
-      },
-      {
-        "name": "Up",
-        "type": "()"
-      },
-      {
-        "name": "Down",
-        "type": "()"
-      }
-    ]
-  },
-  {
-    "type": "interface",
-    "name": "blobbar::systems::actions::IActions",
-    "items": [
-      {
-        "type": "function",
-        "name": "spawn",
-        "inputs": [],
-        "outputs": [],
-        "state_mutability": "view"
-      },
-      {
-        "type": "function",
-        "name": "move",
-        "inputs": [
-          {
-            "name": "direction",
-            "type": "blobbar::models::types::Direction"
-          }
-        ],
-        "outputs": [],
-        "state_mutability": "view"
-      },
-      {
-        "type": "function",
-        "name": "set_addresses",
-        "inputs": [
-          {
-            "name": "seeder",
-            "type": "core::starknet::contract_address::ContractAddress"
-          },
-          {
-            "name": "descriptor",
-            "type": "core::starknet::contract_address::ContractAddress"
-          }
-        ],
-        "outputs": [],
-        "state_mutability": "view"
-      }
-    ]
-  },
-  {
-    "type": "impl",
-    "name": "ActionsComputedImpl",
-    "interface_name": "blobbar::systems::actions::IActionsComputed"
+    "name": "Seeder",
+    "interface_name": "blobbar::blobert::seeder::ISeeder"
   },
   {
     "type": "struct",
-    "name": "blobbar::models::types::Vec2",
+    "name": "core::integer::u256",
     "members": [
       {
-        "name": "x",
-        "type": "core::integer::u8"
+        "name": "low",
+        "type": "core::integer::u128"
       },
       {
-        "name": "y",
-        "type": "core::integer::u8"
+        "name": "high",
+        "type": "core::integer::u128"
       }
     ]
   },
   {
-    "type": "enum",
-    "name": "blobbar::models::types::IngredientType",
-    "variants": [
+    "type": "struct",
+    "name": "blobbar::blobert::types::seeder::Seed",
+    "members": [
       {
-        "name": "Grog",
-        "type": "()"
+        "name": "background",
+        "type": "core::integer::u8"
       },
       {
-        "name": "Mead",
-        "type": "()"
+        "name": "armour",
+        "type": "core::integer::u8"
       },
       {
-        "name": "Whiskey",
-        "type": "()"
+        "name": "jewelry",
+        "type": "core::integer::u8"
       },
       {
-        "name": "Soda",
-        "type": "()"
+        "name": "mask",
+        "type": "core::integer::u8"
       },
       {
-        "name": "Juice",
-        "type": "()"
-      }
-    ]
-  },
-  {
-    "type": "enum",
-    "name": "blobbar::models::types::TileType",
-    "variants": [
-      {
-        "name": "None",
-        "type": "()"
-      },
-      {
-        "name": "Ground",
-        "type": "()"
-      },
-      {
-        "name": "Trash",
-        "type": "()"
-      },
-      {
-        "name": "Bar",
-        "type": "()"
-      },
-      {
-        "name": "Ingredient",
-        "type": "blobbar::models::types::IngredientType"
+        "name": "weapon",
+        "type": "core::integer::u8"
       }
     ]
   },
   {
     "type": "interface",
-    "name": "blobbar::systems::actions::IActionsComputed",
+    "name": "blobbar::blobert::seeder::ISeeder",
     "items": [
       {
         "type": "function",
-        "name": "tile_type",
+        "name": "generate_seed",
         "inputs": [
           {
-            "name": "vec",
-            "type": "blobbar::models::types::Vec2"
+            "name": "token_id",
+            "type": "core::integer::u256"
+          },
+          {
+            "name": "descriptor_addr",
+            "type": "core::starknet::contract_address::ContractAddress"
+          },
+          {
+            "name": "salt",
+            "type": "core::felt252"
           }
         ],
         "outputs": [
           {
-            "type": "blobbar::models::types::TileType"
+            "type": "blobbar::blobert::types::seeder::Seed"
           }
         ],
         "state_mutability": "view"
@@ -267,7 +177,7 @@
   },
   {
     "type": "event",
-    "name": "blobbar::systems::actions::actions::Event",
+    "name": "blobbar::blobert::seeder::Seeder::Event",
     "kind": "enum",
     "variants": [
       {

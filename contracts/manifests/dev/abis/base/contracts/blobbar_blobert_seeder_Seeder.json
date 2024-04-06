@@ -1,22 +1,62 @@
 [
   {
     "type": "impl",
-    "name": "Seeder",
-    "interface_name": "blobbar::blobert::seeder::ISeeder"
+    "name": "DojoResourceProviderImpl",
+    "interface_name": "dojo::world::IDojoResourceProvider"
+  },
+  {
+    "type": "interface",
+    "name": "dojo::world::IDojoResourceProvider",
+    "items": [
+      {
+        "type": "function",
+        "name": "dojo_resource",
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "core::felt252"
+          }
+        ],
+        "state_mutability": "view"
+      }
+    ]
+  },
+  {
+    "type": "impl",
+    "name": "WorldProviderImpl",
+    "interface_name": "dojo::world::IWorldProvider"
   },
   {
     "type": "struct",
-    "name": "core::integer::u256",
+    "name": "dojo::world::IWorldDispatcher",
     "members": [
       {
-        "name": "low",
-        "type": "core::integer::u128"
-      },
-      {
-        "name": "high",
-        "type": "core::integer::u128"
+        "name": "contract_address",
+        "type": "core::starknet::contract_address::ContractAddress"
       }
     ]
+  },
+  {
+    "type": "interface",
+    "name": "dojo::world::IWorldProvider",
+    "items": [
+      {
+        "type": "function",
+        "name": "world",
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "dojo::world::IWorldDispatcher"
+          }
+        ],
+        "state_mutability": "view"
+      }
+    ]
+  },
+  {
+    "type": "impl",
+    "name": "Seeder",
+    "interface_name": "blobbar::blobert::seeder::ISeeder"
   },
   {
     "type": "struct",
@@ -53,10 +93,6 @@
         "name": "generate_seed",
         "inputs": [
           {
-            "name": "token_id",
-            "type": "core::integer::u256"
-          },
-          {
             "name": "descriptor_addr",
             "type": "core::starknet::contract_address::ContractAddress"
           },
@@ -75,9 +111,62 @@
     ]
   },
   {
+    "type": "impl",
+    "name": "UpgradableImpl",
+    "interface_name": "dojo::components::upgradeable::IUpgradeable"
+  },
+  {
+    "type": "interface",
+    "name": "dojo::components::upgradeable::IUpgradeable",
+    "items": [
+      {
+        "type": "function",
+        "name": "upgrade",
+        "inputs": [
+          {
+            "name": "new_class_hash",
+            "type": "core::starknet::class_hash::ClassHash"
+          }
+        ],
+        "outputs": [],
+        "state_mutability": "external"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "dojo::components::upgradeable::upgradeable::Upgraded",
+    "kind": "struct",
+    "members": [
+      {
+        "name": "class_hash",
+        "type": "core::starknet::class_hash::ClassHash",
+        "kind": "data"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "dojo::components::upgradeable::upgradeable::Event",
+    "kind": "enum",
+    "variants": [
+      {
+        "name": "Upgraded",
+        "type": "dojo::components::upgradeable::upgradeable::Upgraded",
+        "kind": "nested"
+      }
+    ]
+  },
+  {
     "type": "event",
     "name": "blobbar::blobert::seeder::Seeder::Event",
     "kind": "enum",
-    "variants": []
+    "variants": [
+      {
+        "name": "UpgradeableEvent",
+        "type": "dojo::components::upgradeable::upgradeable::Event",
+        "kind": "nested"
+      }
+    ]
   }
 ]

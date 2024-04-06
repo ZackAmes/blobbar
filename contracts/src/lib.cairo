@@ -5,6 +5,7 @@ mod systems {
 mod models {
     mod types;
     mod blobtender;
+    mod addresses;
 }
 
 mod tests {

@@ -2,7 +2,7 @@ mod seeder {
     use starknet::{StorePacking};
 
 
-    #[derive(Copy, Drop, Serde, Hash, PartialEq)]
+    #[derive(Copy, Drop, Serde, Hash,Introspect, PartialEq)]
     struct Seed {
         background: u8,
         armour: u8,

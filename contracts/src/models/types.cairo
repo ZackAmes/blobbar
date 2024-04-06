@@ -18,7 +18,6 @@ enum Level {
     Endless
 }
 
-
 #[derive(Copy, Drop, Serde, Introspect)]
 struct Vec2 {
     x: u8,
@@ -53,7 +52,6 @@ enum Direction {
     Down,
 }
 
-
 impl DirectionIntoFelt252 of Into<Direction, felt252> {
     fn into(self: Direction) -> felt252 {
         match self {
@@ -65,7 +63,6 @@ impl DirectionIntoFelt252 of Into<Direction, felt252> {
         }
     }
 }
-
 
 #[derive(Serde, Copy, Drop, Introspect)]
 enum DrinkType {

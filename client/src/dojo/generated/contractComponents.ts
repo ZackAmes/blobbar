@@ -13,15 +13,15 @@ export function defineContractComponents(world: World) {
                 world,
                 {
                     player: RecsType.BigInt,
-                    level: RecsType.Number,
                     position: { x: RecsType.Number, y: RecsType.Number },
+                    level: RecsType.Number,
                     serving: RecsType.Number,
 
                 },
                 {
                     metadata: {
                         name: "Blobtender",
-                        types: ["contractaddress", "enum", "u32", "u32", "enum"],
+                        types: ["contractaddress",  "u8", "u8","string", "string"],
                         customTypes: ["Level", "Vec2", "DrinkType"],
                     },
                 }

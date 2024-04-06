@@ -1,0 +1,83 @@
+[
+  {
+    "type": "impl",
+    "name": "Seeder",
+    "interface_name": "blobbar::blobert::seeder::ISeeder"
+  },
+  {
+    "type": "struct",
+    "name": "core::integer::u256",
+    "members": [
+      {
+        "name": "low",
+        "type": "core::integer::u128"
+      },
+      {
+        "name": "high",
+        "type": "core::integer::u128"
+      }
+    ]
+  },
+  {
+    "type": "struct",
+    "name": "blobbar::blobert::types::seeder::Seed",
+    "members": [
+      {
+        "name": "background",
+        "type": "core::integer::u8"
+      },
+      {
+        "name": "armour",
+        "type": "core::integer::u8"
+      },
+      {
+        "name": "jewelry",
+        "type": "core::integer::u8"
+      },
+      {
+        "name": "mask",
+        "type": "core::integer::u8"
+      },
+      {
+        "name": "weapon",
+        "type": "core::integer::u8"
+      }
+    ]
+  },
+  {
+    "type": "interface",
+    "name": "blobbar::blobert::seeder::ISeeder",
+    "items": [
+      {
+        "type": "function",
+        "name": "generate_seed",
+        "inputs": [
+          {
+            "name": "token_id",
+            "type": "core::integer::u256"
+          },
+          {
+            "name": "descriptor_addr",
+            "type": "core::starknet::contract_address::ContractAddress"
+          },
+          {
+            "name": "salt",
+            "type": "core::felt252"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "blobbar::blobert::types::seeder::Seed"
+          }
+        ],
+        "state_mutability": "view"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "blobbar::blobert::seeder::Seeder::Event",
+    "kind": "enum",
+    "variants": []
+  }
+]

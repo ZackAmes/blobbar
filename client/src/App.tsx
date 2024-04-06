@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Direction } from "./utils";
 import { getEntityIdFromKeys } from "@dojoengine/utils";
 import { useDojo } from "./dojo/useDojo";
+import Scene from "./Scene";
 
 function App() {
     const {
@@ -23,7 +24,7 @@ function App() {
     // get current component values
     const blobtender = useComponentValue(Blobtender, entityId);
     console.log(blobtender);
-
+    let position = blobtender?.position;
 
     return (
         <>
@@ -57,8 +58,55 @@ function App() {
                         use a burner. See readme.
                     </p>
                 </div>
+
+                <div className="card">
+                <button onClick={() => spawn(account.account)}>Spawn</button>
+                <div>
+                    Position:{" "}
+                    {position
+                        ? `${position.x}, ${position.y}`
+                        : "Need to Spawn"}
+                </div>
             </div>
 
+            <div className="card">
+                <div>
+                    <button
+                        onClick={() =>
+                            position && position.y > 0
+                                ? move(account.account, Direction.Up)
+                                : console.log("Reach the borders of the world.")
+                        }
+                    >
+                        Move Up
+                    </button>
+                </div>
+                <div>
+                    <button
+                        onClick={() =>
+                            position && position.x > 0
+                                ? move(account.account, Direction.Left)
+                                : console.log("Reach the borders of the world.")
+                        }
+                    >
+                        Move Left
+                    </button>
+                    <button
+                        onClick={() => move(account.account, Direction.Right)}
+                    >
+                        Move Right
+                    </button>
+                </div>
+                <div>
+                    <button
+                        onClick={() => move(account.account, Direction.Down)}
+                    >
+                        Move Down
+                    </button>
+                </div>
+            </div>
+            <Scene />
+        </div>
         </>
     );
 }

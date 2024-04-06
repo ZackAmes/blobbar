@@ -660,7 +660,7 @@
         ]
       }
     ],
-    "address": "0x43c803d263b1e5ce7fac9d0b883476b0e656a5180d9ea9b845585cb4c20f182",
+    "address": "0x446f1f19ba951b59935df72974f8ba6060e5fbb411ca21d3e3e3812e3eb8df8",
     "transaction_hash": "0x7db352d4ec29ba9fe9cc002fa7a40b81b6599265900ef67db17cdb627d0928",
     "block_number": 3,
     "seed": "blobbar",
@@ -676,7 +676,7 @@
   "contracts": [
     {
       "kind": "DojoContract",
-      "address": "0x3dd4f36c116335afd65dd8b8603c548101eb2bf476b971021528ba31f2f1f9c",
+      "address": "0x2e2ef5d5d3d8d538b2adc5b5848feeba9ea8226c776533cde470cd071ab17d0",
       "class_hash": "0x7c247b2c1749b82cb87249012f524b494b052edea07470c862d9da49849b95e",
       "original_class_hash": "0x7c247b2c1749b82cb87249012f524b494b052edea07470c862d9da49849b95e",
       "base_class_hash": "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76",

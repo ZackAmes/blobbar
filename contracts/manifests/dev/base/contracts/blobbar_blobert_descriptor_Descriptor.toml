@@ -1,0 +1,9 @@
+kind = "DojoContract"
+class_hash = "0x78dacba0558605242522393491c0222f595164afd2176507c80575c67a147fb"
+original_class_hash = "0x78dacba0558605242522393491c0222f595164afd2176507c80575c67a147fb"
+base_class_hash = "0x0"
+abi = "manifests/dev/abis/base/contracts/blobbar_blobert_descriptor_Descriptor.json"
+reads = []
+writes = []
+computed = []
+name = "blobbar::blobert::descriptor::Descriptor"

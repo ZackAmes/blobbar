@@ -12,6 +12,9 @@ spawn = "./scripts/spawn.sh"
 
 [dependencies]
 dojo = { git = "https://github.com/dojoengine/dojo", tag = "v0.6.0" }
+graffiti = { git = "https://github.com/ponderingdemocritus/graffiti", rev = "bc569531791dbc71c6cd8d9bc154c34eedad31fe" }
+alexandria_math = { git = "https://github.com/keep-starknet-strange/alexandria.git", rev = "417c5a80ed2fef05ce159d643f3e34a5386ee06c" }
+
 
 [[target.dojo]]
 

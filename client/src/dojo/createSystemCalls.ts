@@ -23,7 +23,6 @@ export function createSystemCalls(
             BigInt(account.address),
         ]) as Entity;
 
-
         try {
             const { transaction_hash } = await client.actions.spawn({
                 account,
@@ -48,6 +47,14 @@ export function createSystemCalls(
         } 
     };
 
+    const blobert = async () => {
+        try {
+            const res = await client.actions.get_random_blobert();
+            console.log(res);
+        }catch(e) {
+            console.log(e)
+        }
+    }
     const move = async (account: AccountInterface, direction: Direction) => {
         const entityId = getEntityIdFromKeys([
             BigInt(account.address),
@@ -76,5 +83,6 @@ export function createSystemCalls(
     return {
         spawn,
         move,
+        blobert
     };
 }

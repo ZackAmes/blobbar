@@ -9,7 +9,7 @@ import Scene from "./Scene";
 function App() {
     const {
         setup: {
-            systemCalls: { spawn, move },
+            systemCalls: { spawn, move, blobert },
             clientComponents: { Blobtender },
         },
         account,
@@ -25,6 +25,8 @@ function App() {
     const blobtender = useComponentValue(Blobtender, entityId);
     console.log(blobtender);
     let position = blobtender?.position;
+    let blobertsvg = blobert();
+    console.log(blobertsvg)
 
     return (
         <>

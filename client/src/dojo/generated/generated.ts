@@ -39,7 +39,16 @@ export async function setupWorld(provider: DojoProvider) {
                 throw error;
             }
         };
-        return { spawn, move };
+
+        const get_random_blobert = async () => {
+            try {
+                return await provider.call(contract_name, "get_random_blobert", [])
+            } catch(error) {
+                console.error("Error executing move:", error);
+                throw error;
+            }
+        }
+        return { spawn, move,get_random_blobert };
     }
     return {
         actions: actions(),

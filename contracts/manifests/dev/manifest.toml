@@ -20,7 +20,7 @@ kind = "DojoContract"
 address = "0x9f7dbda0ced84f68c14ee07b753f1b019651e7c0d26838f65553b6061aeb92"
 class_hash = "0x78dacba0558605242522393491c0222f595164afd2176507c80575c67a147fb"
 original_class_hash = "0x78dacba0558605242522393491c0222f595164afd2176507c80575c67a147fb"
-base_class_hash = "0x0"
+base_class_hash = "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76"
 abi = "abis/deployments/contracts/blobbar_blobert_descriptor_Descriptor.json"
 reads = []
 writes = []
@@ -30,8 +30,8 @@ name = "blobbar::blobert::descriptor::Descriptor"
 [[contracts]]
 kind = "DojoContract"
 address = "0x6793d351f9e180f451019db2b30ad8d11bb48c4fe6c31f038097f50224190f7"
-class_hash = "0x72258cedf4ad29bf8fac5cc1db9b0114d9a235d98179ee653fdac036eab9a00"
-original_class_hash = "0x72258cedf4ad29bf8fac5cc1db9b0114d9a235d98179ee653fdac036eab9a00"
+class_hash = "0x446cd408777d2c8ca4f5eddb83d8bfaef7f818d53d0d340edd83180c13842f5"
+original_class_hash = "0x446cd408777d2c8ca4f5eddb83d8bfaef7f818d53d0d340edd83180c13842f5"
 base_class_hash = "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76"
 abi = "abis/deployments/contracts/blobbar_blobert_seeder_Seeder.json"
 reads = []
@@ -42,8 +42,8 @@ name = "blobbar::blobert::seeder::Seeder"
 [[contracts]]
 kind = "DojoContract"
 address = "0x3dd4f36c116335afd65dd8b8603c548101eb2bf476b971021528ba31f2f1f9c"
-class_hash = "0x7c247b2c1749b82cb87249012f524b494b052edea07470c862d9da49849b95e"
-original_class_hash = "0x7c247b2c1749b82cb87249012f524b494b052edea07470c862d9da49849b95e"
+class_hash = "0x5aabcee77eefa2f0088afc9dac23f651360b434dbcbcb05e9738b0052456363"
+original_class_hash = "0x5aabcee77eefa2f0088afc9dac23f651360b434dbcbcb05e9738b0052456363"
 base_class_hash = "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76"
 abi = "abis/deployments/contracts/blobbar_systems_actions_actions.json"
 reads = []
@@ -53,8 +53,35 @@ name = "blobbar::systems::actions::actions"
 
 [[models]]
 kind = "DojoModel"
-class_hash = "0x3e395101d4ece911273aabda5a5076bf950ee72fd5713c6b598a08285799d7b"
-original_class_hash = "0x3e395101d4ece911273aabda5a5076bf950ee72fd5713c6b598a08285799d7b"
+class_hash = "0x60ae977c28eaf251905cb160bfd50962a979b950d2afae844f6102d1d506d72"
+original_class_hash = "0x60ae977c28eaf251905cb160bfd50962a979b950d2afae844f6102d1d506d72"
+abi = "abis/deployments/models/blobbar_models_addresses_addresses.json"
+name = "blobbar::models::addresses::addresses"
+
+[[models.members]]
+name = "key"
+type = "u8"
+key = true
+
+[[models.members]]
+name = "seeder"
+type = "ContractAddress"
+key = false
+
+[[models.members]]
+name = "descriptor"
+type = "ContractAddress"
+key = false
+
+[[models.members]]
+name = "set"
+type = "bool"
+key = false
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x2ee89fbccd9097075c3ed5616d006d896171f2e19002cc53c002ed1068bf4cc"
+original_class_hash = "0x2ee89fbccd9097075c3ed5616d006d896171f2e19002cc53c002ed1068bf4cc"
 abi = "abis/deployments/models/blobbar_models_blobtender_blobtender.json"
 name = "blobbar::models::blobtender::blobtender"
 
@@ -76,4 +103,14 @@ key = false
 [[models.members]]
 name = "serving"
 type = "DrinkType"
+key = false
+
+[[models.members]]
+name = "points"
+type = "u32"
+key = false
+
+[[models.members]]
+name = "blobert"
+type = "Seed"
 key = false

@@ -8,6 +8,7 @@ trait IActions {
     fn spawn();
     fn move(direction: Direction);
     fn set_addresses(seeder: ContractAddress, descriptor: ContractAddress);
+    fn get_random_blobert() -> ByteArray;
 }
 
 #[dojo::interface]
@@ -49,6 +50,15 @@ mod actions {
             addresses = Addresses { key: ADDRESS_KEY, seeder, descriptor, set: true};
             set!(world, (addresses));
 
+        }
+
+        fn get_random_blobert(world: IWorldDispatcher) -> ByteArray {
+            let addresses = get!(world, ADDRESS_KEY, (Addresses));
+            let Seeder = ISeederDispatcher {contract_address: addresses.seeder};
+            let Descriptor = IDescriptorDispatcher {contract_address: addresses.descriptor};
+            let salt:felt252 = get_caller_address().into();
+            let seed: Seed = Seeder.generate_seed(addresses.descriptor, salt);
+            Descriptor.svg_image(seed)
         }
 
         fn move(world: IWorldDispatcher, direction: Direction) {

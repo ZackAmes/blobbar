@@ -60,20 +60,6 @@
   },
   {
     "type": "struct",
-    "name": "core::integer::u256",
-    "members": [
-      {
-        "name": "low",
-        "type": "core::integer::u128"
-      },
-      {
-        "name": "high",
-        "type": "core::integer::u128"
-      }
-    ]
-  },
-  {
-    "type": "struct",
     "name": "blobbar::blobert::types::seeder::Seed",
     "members": [
       {
@@ -106,10 +92,6 @@
         "type": "function",
         "name": "generate_seed",
         "inputs": [
-          {
-            "name": "token_id",
-            "type": "core::integer::u256"
-          },
           {
             "name": "descriptor_addr",
             "type": "core::starknet::contract_address::ContractAddress"

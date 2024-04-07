@@ -679,7 +679,7 @@
       "address": "0x9f7dbda0ced84f68c14ee07b753f1b019651e7c0d26838f65553b6061aeb92",
       "class_hash": "0x78dacba0558605242522393491c0222f595164afd2176507c80575c67a147fb",
       "original_class_hash": "0x78dacba0558605242522393491c0222f595164afd2176507c80575c67a147fb",
-      "base_class_hash": "0x0",
+      "base_class_hash": "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76",
       "abi": [
         {
           "type": "impl",
@@ -982,8 +982,8 @@
     {
       "kind": "DojoContract",
       "address": "0x6793d351f9e180f451019db2b30ad8d11bb48c4fe6c31f038097f50224190f7",
-      "class_hash": "0x72258cedf4ad29bf8fac5cc1db9b0114d9a235d98179ee653fdac036eab9a00",
-      "original_class_hash": "0x72258cedf4ad29bf8fac5cc1db9b0114d9a235d98179ee653fdac036eab9a00",
+      "class_hash": "0x446cd408777d2c8ca4f5eddb83d8bfaef7f818d53d0d340edd83180c13842f5",
+      "original_class_hash": "0x446cd408777d2c8ca4f5eddb83d8bfaef7f818d53d0d340edd83180c13842f5",
       "base_class_hash": "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76",
       "abi": [
         {
@@ -1047,20 +1047,6 @@
         },
         {
           "type": "struct",
-          "name": "core::integer::u256",
-          "members": [
-            {
-              "name": "low",
-              "type": "core::integer::u128"
-            },
-            {
-              "name": "high",
-              "type": "core::integer::u128"
-            }
-          ]
-        },
-        {
-          "type": "struct",
           "name": "blobbar::blobert::types::seeder::Seed",
           "members": [
             {
@@ -1093,10 +1079,6 @@
               "type": "function",
               "name": "generate_seed",
               "inputs": [
-                {
-                  "name": "token_id",
-                  "type": "core::integer::u256"
-                },
                 {
                   "name": "descriptor_addr",
                   "type": "core::starknet::contract_address::ContractAddress"
@@ -1183,8 +1165,8 @@
     {
       "kind": "DojoContract",
       "address": "0x3dd4f36c116335afd65dd8b8603c548101eb2bf476b971021528ba31f2f1f9c",
-      "class_hash": "0x7c247b2c1749b82cb87249012f524b494b052edea07470c862d9da49849b95e",
-      "original_class_hash": "0x7c247b2c1749b82cb87249012f524b494b052edea07470c862d9da49849b95e",
+      "class_hash": "0x5aabcee77eefa2f0088afc9dac23f651360b434dbcbcb05e9738b0052456363",
+      "original_class_hash": "0x5aabcee77eefa2f0088afc9dac23f651360b434dbcbcb05e9738b0052456363",
       "base_class_hash": "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76",
       "abi": [
         {
@@ -1273,6 +1255,24 @@
           ]
         },
         {
+          "type": "struct",
+          "name": "core::byte_array::ByteArray",
+          "members": [
+            {
+              "name": "data",
+              "type": "core::array::Array::<core::bytes_31::bytes31>"
+            },
+            {
+              "name": "pending_word",
+              "type": "core::felt252"
+            },
+            {
+              "name": "pending_word_len",
+              "type": "core::integer::u32"
+            }
+          ]
+        },
+        {
           "type": "interface",
           "name": "blobbar::systems::actions::IActions",
           "items": [
@@ -1293,6 +1293,33 @@
                 }
               ],
               "outputs": [],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "set_addresses",
+              "inputs": [
+                {
+                  "name": "seeder",
+                  "type": "core::starknet::contract_address::ContractAddress"
+                },
+                {
+                  "name": "descriptor",
+                  "type": "core::starknet::contract_address::ContractAddress"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "get_random_blobert",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "core::byte_array::ByteArray"
+                }
+              ],
               "state_mutability": "view"
             }
           ]
@@ -1461,6 +1488,269 @@
       "kind": "DojoModel",
       "members": [
         {
+          "name": "key",
+          "type": "u8",
+          "key": true
+        },
+        {
+          "name": "seeder",
+          "type": "ContractAddress",
+          "key": false
+        },
+        {
+          "name": "descriptor",
+          "type": "ContractAddress",
+          "key": false
+        },
+        {
+          "name": "set",
+          "type": "bool",
+          "key": false
+        }
+      ],
+      "class_hash": "0x60ae977c28eaf251905cb160bfd50962a979b950d2afae844f6102d1d506d72",
+      "original_class_hash": "0x60ae977c28eaf251905cb160bfd50962a979b950d2afae844f6102d1d506d72",
+      "abi": [
+        {
+          "type": "impl",
+          "name": "DojoModelImpl",
+          "interface_name": "dojo::model::IDojoModel"
+        },
+        {
+          "type": "struct",
+          "name": "core::array::Span::<core::integer::u8>",
+          "members": [
+            {
+              "name": "snapshot",
+              "type": "@core::array::Array::<core::integer::u8>"
+            }
+          ]
+        },
+        {
+          "type": "struct",
+          "name": "core::array::Span::<core::felt252>",
+          "members": [
+            {
+              "name": "snapshot",
+              "type": "@core::array::Array::<core::felt252>"
+            }
+          ]
+        },
+        {
+          "type": "struct",
+          "name": "core::array::Span::<core::array::Span::<core::felt252>>",
+          "members": [
+            {
+              "name": "snapshot",
+              "type": "@core::array::Array::<core::array::Span::<core::felt252>>"
+            }
+          ]
+        },
+        {
+          "type": "struct",
+          "name": "dojo::database::introspect::Struct",
+          "members": [
+            {
+              "name": "name",
+              "type": "core::felt252"
+            },
+            {
+              "name": "attrs",
+              "type": "core::array::Span::<core::felt252>"
+            },
+            {
+              "name": "children",
+              "type": "core::array::Span::<core::array::Span::<core::felt252>>"
+            }
+          ]
+        },
+        {
+          "type": "struct",
+          "name": "core::array::Span::<(core::felt252, core::array::Span::<core::felt252>)>",
+          "members": [
+            {
+              "name": "snapshot",
+              "type": "@core::array::Array::<(core::felt252, core::array::Span::<core::felt252>)>"
+            }
+          ]
+        },
+        {
+          "type": "struct",
+          "name": "dojo::database::introspect::Enum",
+          "members": [
+            {
+              "name": "name",
+              "type": "core::felt252"
+            },
+            {
+              "name": "attrs",
+              "type": "core::array::Span::<core::felt252>"
+            },
+            {
+              "name": "children",
+              "type": "core::array::Span::<(core::felt252, core::array::Span::<core::felt252>)>"
+            }
+          ]
+        },
+        {
+          "type": "enum",
+          "name": "dojo::database::introspect::Ty",
+          "variants": [
+            {
+              "name": "Primitive",
+              "type": "core::felt252"
+            },
+            {
+              "name": "Struct",
+              "type": "dojo::database::introspect::Struct"
+            },
+            {
+              "name": "Enum",
+              "type": "dojo::database::introspect::Enum"
+            },
+            {
+              "name": "Tuple",
+              "type": "core::array::Span::<core::array::Span::<core::felt252>>"
+            },
+            {
+              "name": "Array",
+              "type": "core::integer::u32"
+            }
+          ]
+        },
+        {
+          "type": "interface",
+          "name": "dojo::model::IDojoModel",
+          "items": [
+            {
+              "type": "function",
+              "name": "name",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "core::felt252"
+                }
+              ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "unpacked_size",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "core::integer::u32"
+                }
+              ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "packed_size",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "core::integer::u32"
+                }
+              ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "layout",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "core::array::Span::<core::integer::u8>"
+                }
+              ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "schema",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "dojo::database::introspect::Ty"
+                }
+              ],
+              "state_mutability": "view"
+            }
+          ]
+        },
+        {
+          "type": "impl",
+          "name": "addressesImpl",
+          "interface_name": "blobbar::models::addresses::Iaddresses"
+        },
+        {
+          "type": "enum",
+          "name": "core::bool",
+          "variants": [
+            {
+              "name": "False",
+              "type": "()"
+            },
+            {
+              "name": "True",
+              "type": "()"
+            }
+          ]
+        },
+        {
+          "type": "struct",
+          "name": "blobbar::models::addresses::Addresses",
+          "members": [
+            {
+              "name": "key",
+              "type": "core::integer::u8"
+            },
+            {
+              "name": "seeder",
+              "type": "core::starknet::contract_address::ContractAddress"
+            },
+            {
+              "name": "descriptor",
+              "type": "core::starknet::contract_address::ContractAddress"
+            },
+            {
+              "name": "set",
+              "type": "core::bool"
+            }
+          ]
+        },
+        {
+          "type": "interface",
+          "name": "blobbar::models::addresses::Iaddresses",
+          "items": [
+            {
+              "type": "function",
+              "name": "ensure_abi",
+              "inputs": [
+                {
+                  "name": "model",
+                  "type": "blobbar::models::addresses::Addresses"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "view"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "name": "blobbar::models::addresses::addresses::Event",
+          "kind": "enum",
+          "variants": []
+        }
+      ],
+      "name": "blobbar::models::addresses::addresses"
+    },
+    {
+      "kind": "DojoModel",
+      "members": [
+        {
           "name": "player",
           "type": "ContractAddress",
           "key": true
@@ -1479,10 +1769,20 @@
           "name": "serving",
           "type": "DrinkType",
           "key": false
+        },
+        {
+          "name": "points",
+          "type": "u32",
+          "key": false
+        },
+        {
+          "name": "blobert",
+          "type": "Seed",
+          "key": false
         }
       ],
-      "class_hash": "0x3e395101d4ece911273aabda5a5076bf950ee72fd5713c6b598a08285799d7b",
-      "original_class_hash": "0x3e395101d4ece911273aabda5a5076bf950ee72fd5713c6b598a08285799d7b",
+      "class_hash": "0x2ee89fbccd9097075c3ed5616d006d896171f2e19002cc53c002ed1068bf4cc",
+      "original_class_hash": "0x2ee89fbccd9097075c3ed5616d006d896171f2e19002cc53c002ed1068bf4cc",
       "abi": [
         {
           "type": "impl",
@@ -1781,6 +2081,32 @@
         },
         {
           "type": "struct",
+          "name": "blobbar::blobert::types::seeder::Seed",
+          "members": [
+            {
+              "name": "background",
+              "type": "core::integer::u8"
+            },
+            {
+              "name": "armour",
+              "type": "core::integer::u8"
+            },
+            {
+              "name": "jewelry",
+              "type": "core::integer::u8"
+            },
+            {
+              "name": "mask",
+              "type": "core::integer::u8"
+            },
+            {
+              "name": "weapon",
+              "type": "core::integer::u8"
+            }
+          ]
+        },
+        {
+          "type": "struct",
           "name": "blobbar::models::blobtender::Blobtender",
           "members": [
             {
@@ -1798,6 +2124,14 @@
             {
               "name": "serving",
               "type": "blobbar::models::types::DrinkType"
+            },
+            {
+              "name": "points",
+              "type": "core::integer::u32"
+            },
+            {
+              "name": "blobert",
+              "type": "blobbar::blobert::types::seeder::Seed"
             }
           ]
         },

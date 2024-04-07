@@ -1,0 +1,20 @@
+kind = "DojoModel"
+class_hash = "0xcbd2af6cfa4211331819d0a80ae1785bc9083339d1c06524533c92761e0732"
+original_class_hash = "0xcbd2af6cfa4211331819d0a80ae1785bc9083339d1c06524533c92761e0732"
+abi = "manifests/dev/abis/base/models/blobbar_models_blobtender_current_client.json"
+name = "blobbar::models::blobtender::current_client"
+
+[[members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[members]]
+name = "index"
+type = "u32"
+key = false
+
+[[members]]
+name = "order"
+type = "DrinkType"
+key = false

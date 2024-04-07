@@ -982,8 +982,8 @@
     {
       "kind": "DojoContract",
       "address": "0x6793d351f9e180f451019db2b30ad8d11bb48c4fe6c31f038097f50224190f7",
-      "class_hash": "0x41f6b30adf338c19e69693af020502618f03f39f8dddf092b40a5883a33f19e",
-      "original_class_hash": "0x41f6b30adf338c19e69693af020502618f03f39f8dddf092b40a5883a33f19e",
+      "class_hash": "0x29cd80a097c7ae5ceace6867d6c0b5e31a6016944e067b8986b78f897108bf",
+      "original_class_hash": "0x29cd80a097c7ae5ceace6867d6c0b5e31a6016944e067b8986b78f897108bf",
       "base_class_hash": "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76",
       "abi": [
         {
@@ -1119,7 +1119,7 @@
                 },
                 {
                   "name": "index",
-                  "type": "core::integer::u8"
+                  "type": "core::integer::u32"
                 },
                 {
                   "name": "address",
@@ -1203,8 +1203,8 @@
     {
       "kind": "DojoContract",
       "address": "0x3dd4f36c116335afd65dd8b8603c548101eb2bf476b971021528ba31f2f1f9c",
-      "class_hash": "0x326dd5ad312328800ee13e4479b0820e879ccdb3d018e64755702b253cc7e67",
-      "original_class_hash": "0x326dd5ad312328800ee13e4479b0820e879ccdb3d018e64755702b253cc7e67",
+      "class_hash": "0x1c671d32a5938b013b0d99e2288b5ddb55a67369d7b37a7dd4d8a8b7552681e",
+      "original_class_hash": "0x1c671d32a5938b013b0d99e2288b5ddb55a67369d7b37a7dd4d8a8b7552681e",
       "base_class_hash": "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76",
       "abi": [
         {
@@ -1447,8 +1447,12 @@
               "name": "get_client_blobert",
               "inputs": [
                 {
+                  "name": "player",
+                  "type": "core::starknet::contract_address::ContractAddress"
+                },
+                {
                   "name": "index",
-                  "type": "core::integer::u8"
+                  "type": "core::integer::u32"
                 }
               ],
               "outputs": [
@@ -1463,8 +1467,12 @@
               "name": "get_client_order",
               "inputs": [
                 {
+                  "name": "player",
+                  "type": "core::starknet::contract_address::ContractAddress"
+                },
+                {
                   "name": "index",
-                  "type": "core::integer::u8"
+                  "type": "core::integer::u32"
                 }
               ],
               "outputs": [
@@ -1477,10 +1485,15 @@
             {
               "type": "function",
               "name": "get_queue_size",
-              "inputs": [],
+              "inputs": [
+                {
+                  "name": "player",
+                  "type": "core::starknet::contract_address::ContractAddress"
+                }
+              ],
               "outputs": [
                 {
-                  "type": "core::integer::u8"
+                  "type": "core::integer::u32"
                 }
               ],
               "state_mutability": "view"

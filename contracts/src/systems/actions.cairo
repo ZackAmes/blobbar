@@ -31,7 +31,7 @@ mod actions {
     use starknet::{ContractAddress, get_caller_address, get_block_timestamp};
     use blobbar::models::{
                         types::{Level, Direction, TileType, DrinkType, DrinkTypeTrait, IngredientType, Vec2, Status}, 
-                        blobtender::{Blobtender, BlobtenderTrait},
+                        blobtender::{Blobtender, BlobtenderTrait, CurrentClient},
                         addresses::{Addresses}};
     use blobbar::blobert::seeder::{ISeederDispatcher, ISeederDispatcherTrait};
     use blobbar::blobert::descriptor::{IDescriptorDispatcher, IDescriptorDispatcherTrait};
@@ -56,7 +56,9 @@ mod actions {
             assert!(blobtender.start_time == 0, "level in progress");
             blobtender.start_time = get_block_timestamp();
             blobtender.level_up();
-            set!(world, (blobtender));
+            let index = blobtender.clients_served +1; 
+            let current_client = CurrentClient {player, index, order: self.get_client_order(player, index)};
+            set!(world, (blobtender, current_client));
         }
 
         fn set_addresses(world: IWorldDispatcher, seeder: ContractAddress, descriptor: ContractAddress) {
@@ -210,6 +212,7 @@ mod actions {
         let mut blobtender = get!(world, player, (Blobtender));
         let current_client = blobtender.clients_served + 1;
         let correct = blobtender.serving.into() == self.get_client_order(player, current_client.try_into().unwrap());
+        
         match status {
             Status::None => {
                 panic!("??");
@@ -222,6 +225,10 @@ mod actions {
             },
             Status::InProgress => {
                 blobtender.serve(correct);
+                let next_client = blobtender.clients_served+1;
+                let next_order = self.get_client_order(player, next_client);
+                let current_client = CurrentClient {player, index: next_client, order: next_order};
+                set!(world, (current_client))
             }
 
         }

@@ -16,6 +16,14 @@ struct Blobtender {
     start_time: u64
 }
 
+#[derive(Model, Copy, Drop, Serde)]
+struct CurrentClient {
+    #[key]
+    player: ContractAddress,
+    index: u32,
+    order: DrinkType
+}
+
 #[generate_trait]
 impl BlobtenderImpl of BlobtenderTrait {
 

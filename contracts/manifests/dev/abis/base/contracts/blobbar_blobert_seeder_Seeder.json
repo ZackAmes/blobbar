@@ -59,11 +59,37 @@
     "interface_name": "blobbar::blobert::seeder::ISeeder"
   },
   {
+    "type": "enum",
+    "name": "blobbar::models::types::Level",
+    "variants": [
+      {
+        "name": "None",
+        "type": "()"
+      },
+      {
+        "name": "One",
+        "type": "()"
+      },
+      {
+        "name": "Two",
+        "type": "()"
+      },
+      {
+        "name": "Three",
+        "type": "()"
+      },
+      {
+        "name": "Endless",
+        "type": "()"
+      }
+    ]
+  },
+  {
     "type": "struct",
     "name": "blobbar::blobert::types::seeder::Seed",
     "members": [
       {
-        "name": "background",
+        "name": "order",
         "type": "core::integer::u8"
       },
       {
@@ -97,7 +123,19 @@
             "type": "core::starknet::contract_address::ContractAddress"
           },
           {
-            "name": "salt",
+            "name": "level",
+            "type": "blobbar::models::types::Level"
+          },
+          {
+            "name": "time_stamp",
+            "type": "core::integer::u64"
+          },
+          {
+            "name": "index",
+            "type": "core::integer::u8"
+          },
+          {
+            "name": "address",
             "type": "core::felt252"
           }
         ],

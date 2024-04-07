@@ -1,5 +1,6 @@
-use blobbar::models::types::{Direction, TileType, Vec2};
+use blobbar::models::types::{Direction, TileType, Vec2, DrinkType};
 use blobbar::models::blobtender::{Blobtender};
+use blobbar::blobert::types::seeder::Seed;
 use starknet::ContractAddress;
 
 // define the interface
@@ -9,6 +10,10 @@ trait IActions {
     fn move(direction: Direction);
     fn set_addresses(seeder: ContractAddress, descriptor: ContractAddress);
     fn get_random_blobert() -> ByteArray;
+    fn get_client_blobert(index: u8) -> ByteArray;
+    fn get_client_order(index: u8) -> DrinkType;
+    fn get_queue_size() -> u8;
+    fn start_level();
 }
 
 #[dojo::interface]
@@ -37,11 +42,18 @@ mod actions {
         fn spawn(world: IWorldDispatcher) {
             let player = get_caller_address();
             let blobtender = get!(world, player, (Blobtender));
-            let level = blobtender.level;
-            assert!(level == Level::None, "already spawned");
-            let test_seed = Seed {background: 0, armour: 0, mask: 0, weapon: 0, jewelry: 0};
-            let start_time = get_block_timestamp();
-            let blobtender = BlobtenderTrait::new(player, test_seed, start_time);
+            assert!(blobtender.high_score==0 && blobtender.clients_served==0, "already spawned");
+            let test_seed = Seed {order: 0, armour: 0, mask: 0, weapon: 0, jewelry: 0};
+            let blobtender = BlobtenderTrait::new(player, test_seed, start_time: 0);
+            set!(world, (blobtender));
+        }
+
+        fn start_level(world: IWorldDispatcher) {
+            let player = get_caller_address();
+            let mut blobtender = get!(world, player, (Blobtender));
+            assert!(blobtender.level != Level::None, "not spawned");
+            blobtender.start_time = get_block_timestamp();
+            blobtender.level_up();
             set!(world, (blobtender));
         }
 
@@ -58,7 +70,7 @@ mod actions {
             let Seeder = ISeederDispatcher {contract_address: addresses.seeder};
             let Descriptor = IDescriptorDispatcher {contract_address: addresses.descriptor};
             let salt:felt252 = get_caller_address().into();
-            let seed: Seed = Seeder.generate_seed(addresses.descriptor, salt);
+            let seed: Seed = Seeder.generate_seed(addresses.descriptor,Level::One, get_block_timestamp(),1, salt);
             Descriptor.svg_image(seed)
         }
 
@@ -105,6 +117,41 @@ mod actions {
             set!(world, (blobtender));
 
         }
+
+        fn get_client_blobert(world: IWorldDispatcher, index: u8) -> ByteArray{
+            let player = get_caller_address();
+            let blobtender = get!(world, player, (Blobtender));
+            assert!(blobtender.start_time !=0, "level not started");
+            assert!(index <= self.get_queue_size(), "index larger than queue size");
+            let addresses = get!(world, ADDRESS_KEY, (Addresses));
+            let Seeder = ISeederDispatcher {contract_address: addresses.seeder };
+            let Descriptor = IDescriptorDispatcher {contract_address: addresses.seeder};
+            let seed = Seeder.generate_seed(addresses.descriptor, blobtender.level, blobtender.start_time, index, player.into());
+            Descriptor.svg_image(seed)
+        }
+
+        fn get_client_order(world: IWorldDispatcher, index: u8) -> DrinkType {
+            let player = get_caller_address();
+            let blobtender = get!(world, player, (Blobtender));
+            assert!(blobtender.start_time !=0, "level not started");
+            assert!(index <= self.get_queue_size(), "index larger than queue size");
+            let addresses = get!(world, ADDRESS_KEY, (Addresses));
+            let Seeder = ISeederDispatcher {contract_address: addresses.seeder };
+            let seed = Seeder.generate_seed(addresses.descriptor, blobtender.level, blobtender.start_time, index, player.into());
+            let res:DrinkType = seed.order.into();
+            res
+            
+        }
+
+        fn get_queue_size(world: IWorldDispatcher) -> u8{
+            let player = get_caller_address();
+            let blobtender = get!(world, player, (Blobtender));
+            assert!(blobtender.start_time != 0, "level not started");
+            let time_stamp = get_block_timestamp();
+            let queue_size: u64 = time_stamp - blobtender.start_time / 30;
+            let res: u8 = queue_size.try_into().unwrap();
+            res + 2
+        }
     }
     #[abi(embed_v0)]
     impl ActionsComputedImpl of IActionsComputed<ContractState> {
@@ -150,6 +197,7 @@ mod actions {
                 }
             }
         }
+
     }
 
     

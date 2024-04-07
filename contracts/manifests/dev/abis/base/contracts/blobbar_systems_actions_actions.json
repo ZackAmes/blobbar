@@ -103,6 +103,88 @@
     ]
   },
   {
+    "type": "enum",
+    "name": "blobbar::models::types::DrinkType",
+    "variants": [
+      {
+        "name": "None",
+        "type": "()"
+      },
+      {
+        "name": "Ew",
+        "type": "()"
+      },
+      {
+        "name": "Grog",
+        "type": "()"
+      },
+      {
+        "name": "Mead",
+        "type": "()"
+      },
+      {
+        "name": "Whiskey",
+        "type": "()"
+      },
+      {
+        "name": "Soda",
+        "type": "()"
+      },
+      {
+        "name": "Juice",
+        "type": "()"
+      },
+      {
+        "name": "MeadSprtiz",
+        "type": "()"
+      },
+      {
+        "name": "KnightsSpritz",
+        "type": "()"
+      },
+      {
+        "name": "RoyalHoneyedNectar",
+        "type": "()"
+      },
+      {
+        "name": "NobleNectar",
+        "type": "()"
+      },
+      {
+        "name": "CastleCitrusFizz",
+        "type": "()"
+      },
+      {
+        "name": "RegalRefresher",
+        "type": "()"
+      },
+      {
+        "name": "MonarchsMingle",
+        "type": "()"
+      },
+      {
+        "name": "CourtlyCooler",
+        "type": "()"
+      },
+      {
+        "name": "WizardsWhirl",
+        "type": "()"
+      },
+      {
+        "name": "MajesticMetheglin",
+        "type": "()"
+      },
+      {
+        "name": "SovereignSwirl",
+        "type": "()"
+      },
+      {
+        "name": "ChivalrousChalice",
+        "type": "()"
+      }
+    ]
+  },
+  {
     "type": "interface",
     "name": "blobbar::systems::actions::IActions",
     "items": [
@@ -150,6 +232,56 @@
             "type": "core::byte_array::ByteArray"
           }
         ],
+        "state_mutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "get_client_blobert",
+        "inputs": [
+          {
+            "name": "index",
+            "type": "core::integer::u8"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "core::byte_array::ByteArray"
+          }
+        ],
+        "state_mutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "get_client_order",
+        "inputs": [
+          {
+            "name": "index",
+            "type": "core::integer::u8"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "blobbar::models::types::DrinkType"
+          }
+        ],
+        "state_mutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "get_queue_size",
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "core::integer::u8"
+          }
+        ],
+        "state_mutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "start_level",
+        "inputs": [],
+        "outputs": [],
         "state_mutability": "view"
       }
     ]

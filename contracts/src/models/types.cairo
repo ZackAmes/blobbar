@@ -87,6 +87,59 @@ enum DrinkType {
     ChivalrousChalice
 }
 
+impl DrinkTypeIntoFelt252 of Into<DrinkType, felt252> {
+    fn into(self: DrinkType) -> felt252 {
+        match self {
+            DrinkType::None => 0,
+            DrinkType::Ew => 1,
+            DrinkType::Grog => 2,
+            DrinkType::Mead => 3, 
+            DrinkType::Whiskey => 4,
+            DrinkType::Soda => 5,
+            DrinkType::Juice => 6,
+            DrinkType::MeadSprtiz => 7,
+            DrinkType::KnightsSpritz => 8,
+            DrinkType::RoyalHoneyedNectar => 9,
+            DrinkType::NobleNectar => 10,
+            DrinkType::CastleCitrusFizz => 11,
+            DrinkType::RegalRefresher => 12,
+            DrinkType::MonarchsMingle => 13,
+            DrinkType::CourtlyCooler => 14,
+            DrinkType::WizardsWhirl => 15,
+            DrinkType::MajesticMetheglin => 16,
+            DrinkType::SovereignSwirl => 17,
+            DrinkType::ChivalrousChalice => 18,
+        }
+    }
+}
+
+impl U8IntoDrinkType of Into<u8, DrinkType> {
+    fn into(self: u8) -> DrinkType {
+        match self {
+            0 => DrinkType::None,
+            1 => DrinkType::Ew,
+            2=> DrinkType::Grog,
+            3 => DrinkType::Mead, 
+            4 => DrinkType::Whiskey,
+            5 => DrinkType::Soda,
+            6 => DrinkType::Juice,
+            7 => DrinkType::MeadSprtiz,
+            8 => DrinkType::KnightsSpritz,
+            9 => DrinkType::RoyalHoneyedNectar,
+            10 => DrinkType::NobleNectar,
+            11 => DrinkType::CastleCitrusFizz,
+            12 => DrinkType::RegalRefresher,
+            13 => DrinkType::MonarchsMingle,
+            14 => DrinkType::CourtlyCooler,
+            15 => DrinkType::WizardsWhirl,
+            16 => DrinkType::MajesticMetheglin,
+            17 => DrinkType::SovereignSwirl,
+            18 => DrinkType::ChivalrousChalice,
+            _ => DrinkType::None
+        }
+    }
+}
+
 #[derive(Serde, Copy, Drop, Introspect)]
 enum IngredientType {
     Grog,

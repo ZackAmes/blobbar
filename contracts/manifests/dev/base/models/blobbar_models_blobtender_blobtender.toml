@@ -1,6 +1,6 @@
 kind = "DojoModel"
-class_hash = "0x1c51f0d840a4cb56bcf7332e115b8b613ce04acf15d9f55e319914b600b0e4e"
-original_class_hash = "0x1c51f0d840a4cb56bcf7332e115b8b613ce04acf15d9f55e319914b600b0e4e"
+class_hash = "0x81f51de83467639dfe38bb57db63fff3b91220591894405514e92c2d9d7a0a"
+original_class_hash = "0x81f51de83467639dfe38bb57db63fff3b91220591894405514e92c2d9d7a0a"
 abi = "manifests/dev/abis/base/models/blobbar_models_blobtender_blobtender.json"
 name = "blobbar::models::blobtender::blobtender"
 
@@ -25,7 +25,12 @@ type = "DrinkType"
 key = false
 
 [[members]]
-name = "points"
+name = "clients_served"
+type = "u32"
+key = false
+
+[[members]]
+name = "high_score"
 type = "u32"
 key = false
 

@@ -10,7 +10,8 @@ struct Blobtender {
     level: Level,
     position: Vec2,
     serving: DrinkType,
-    points: u32,
+    clients_served: u32,
+    high_score: u32,
     blobert: Seed,
     start_time: u64
 }
@@ -19,29 +20,34 @@ struct Blobtender {
 impl BlobtenderImpl of BlobtenderTrait {
 
     fn new(player: ContractAddress, blobert: Seed, start_time: u64) -> Blobtender {
-        Blobtender {player, level:Level::One, position: Vec2 {x: 2, y:1}, serving: DrinkType::None, points: 0, blobert, start_time}
+        Blobtender {player, level:Level::One, position: Vec2 {x: 2, y:1}, serving: DrinkType::None, clients_served: 0,high_score: 0, blobert, start_time}
     }
 
     fn serve(ref self: Blobtender) {
-        match self.level {
-            Level::None => {
-                panic!("??");
-            },
-            Level::One => {
-                self.points += 100;
-            },
-            Level::Two => {
-                self.points += 150;
-            },
-            Level::Three => {
-                self.points += 250;
-            },
-            Level::Endless => {
-                self.points+=300;
-            }
-        }
+        self.clients_served += 1;
         self.serving = DrinkType::None;
     }
+
+    fn level_up(ref self: Blobtender) {
+        match self.level {
+            Level::None => {
+                self.level = Level::One;
+            },
+            Level::One => {
+                self.level = Level::Two;
+            },
+            Level::Two => {
+                self.level = Level::Three;
+            },
+            Level::Three => {
+                self.level = Level::Endless;
+            },
+            Level::Endless => {
+
+            }
+
+        }
+    } 
     
 }
 

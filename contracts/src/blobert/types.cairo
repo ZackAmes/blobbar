@@ -4,7 +4,7 @@ mod seeder {
 
     #[derive(Copy, Drop, Serde, Hash,Introspect, PartialEq)]
     struct Seed {
-        background: u8,
+        order: u8,
         armour: u8,
         jewelry: u8,
         mask: u8,
@@ -21,7 +21,7 @@ mod seeder {
 
     impl SeedStorePacking of StorePacking<Seed, u64> {
         fn pack(value: Seed) -> u64 {
-            value.background.into()
+            value.order.into()
                 + (value.armour.into() * (TWO_POW_8))
                 + (value.jewelry.into() * (TWO_POW_16))
                 + (value.mask.into() * (TWO_POW_24))
@@ -30,7 +30,7 @@ mod seeder {
 
         fn unpack(value: u64) -> Seed {
             Seed {
-                background: (value & MASK_8).try_into().unwrap(),
+                order: (value & MASK_8).try_into().unwrap(),
                 armour: ((value / TWO_POW_8) & MASK_8).try_into().unwrap(),
                 jewelry: ((value / TWO_POW_16) & MASK_8).try_into().unwrap(),
                 mask: ((value / TWO_POW_24) & MASK_8).try_into().unwrap(),

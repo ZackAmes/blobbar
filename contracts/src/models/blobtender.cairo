@@ -1,5 +1,5 @@
 
-use blobbar::models::types::{Direction, DrinkType, Level, Vec2};
+use blobbar::models::types::{Direction, DrinkType, Level, Vec2, Status};
 use blobbar::blobert::types::seeder::Seed;
 use starknet::ContractAddress;
 
@@ -24,16 +24,18 @@ struct CurrentClient {
     order: DrinkType
 }
 
+#[derive(Model, Copy, Drop, Serde)]
+struct CurrentStatus {
+    #[key]
+    player: ContractAddress,
+    status: Status
+}
+
 #[generate_trait]
 impl BlobtenderImpl of BlobtenderTrait {
 
     fn new(player: ContractAddress, blobert: Seed, start_time: u64) -> Blobtender {
         Blobtender {player, level:Level::None, position: Vec2 {x: 2, y:1}, serving: DrinkType::None, clients_served: 0,high_score: 0, blobert, start_time}
-    }
-
-    fn serve(ref self: Blobtender, correct: bool) {
-        if correct {self.clients_served += 1};
-        self.serving = DrinkType::None;
     }
 
     fn game_over(ref self: Blobtender) {

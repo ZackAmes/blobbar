@@ -1,12 +1,14 @@
 import { useComponentValue } from "@dojoengine/react";
 import { Entity } from "@dojoengine/recs";
 import { Suspense, useEffect, useState } from "react";
-import { Direction } from "./utils";
+import { Direction, recipes } from "./utils";
 import { getEntityIdFromKeys, hexToAscii } from "@dojoengine/utils";
 import { useDojo } from "./dojo/useDojo";
 import Bar from "./components/Bar";
 import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
+import Recipe from "./components/Recipe";
+import Button from "./components/Button";
 
 function App() {
     const {
@@ -45,6 +47,7 @@ function App() {
             <Canvas style={{height:800, width:800}} camera={{ position:[0,-15,6] }}>
                 <></>
                 <Bar blob_position = {blob_position} get_blobert={get_blobert}/>
+
 
             </Canvas>
         </Suspense>

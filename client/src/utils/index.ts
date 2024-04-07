@@ -27,3 +27,24 @@ export function updatePositionWithDirection(
     }
     return value;
 }
+
+export const recipes: Array<[string,string,string]> = [
+    ["Grog", "", ""],
+    ["Mead", "", ""],
+    ["Whiskey", "", ""],
+    ["Soda", "", ""],
+    ["Juice", "", ""],
+    ["Mead", "Soda", "Mead Spritz"],
+    ["Whiskey", "Soda", "Knight's Spritz"],
+    ["Mead", "Juice", "Royal Honeyed Nectar"],
+    ["Whiskey", "Juice", "Noble Nectar"],
+    ["Mead Spritz", "Juice", "Castle Citrus Fizz"],
+    ["Knight's Spritz", "Juice", "Regal Refresher"],
+    ["Royal HoneyedNectar", "Soda", "Monarch's Mingle"],
+    ["Noble Nectar", "Soda", "Courtly Cooler"],
+    ["Castle Citrus Fizz", "Whiskey", "Wizard's Whirl"],
+    ["Regal Refresher", "Mead", "Majestic Metheglin"],
+    ["Monarch's Mingle", "Whiskey", "Sovereign Swirl"],
+    ["Courtly Cooler", "Mead", "Chivalrous Chalice"],
+
+]

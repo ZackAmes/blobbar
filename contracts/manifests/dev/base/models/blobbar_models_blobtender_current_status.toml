@@ -1,0 +1,15 @@
+kind = "DojoModel"
+class_hash = "0x709917dcc846d640b94c7e3dfab1b1b4db7fcef0ab3db4aec373735877440b1"
+original_class_hash = "0x709917dcc846d640b94c7e3dfab1b1b4db7fcef0ab3db4aec373735877440b1"
+abi = "manifests/dev/abis/base/models/blobbar_models_blobtender_current_status.json"
+name = "blobbar::models::blobtender::current_status"
+
+[[members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[members]]
+name = "status"
+type = "Status"
+key = false

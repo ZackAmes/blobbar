@@ -31,7 +31,7 @@ mod actions {
     use starknet::{ContractAddress, get_caller_address, get_block_timestamp};
     use blobbar::models::{
                         types::{Level, Direction, TileType, DrinkType, DrinkTypeTrait, IngredientType, Vec2, Status}, 
-                        blobtender::{Blobtender, BlobtenderTrait, CurrentClient},
+                        blobtender::{Blobtender, BlobtenderTrait, CurrentClient, CurrentStatus},
                         addresses::{Addresses}};
     use blobbar::blobert::seeder::{ISeederDispatcher, ISeederDispatcherTrait};
     use blobbar::blobert::descriptor::{IDescriptorDispatcher, IDescriptorDispatcherTrait};
@@ -54,11 +54,12 @@ mod actions {
             let player = get_caller_address();
             let mut blobtender = get!(world, player, (Blobtender));
             assert!(blobtender.start_time == 0, "level in progress");
+            if(blobtender.level == Level::None) {blobtender.level_up();}
             blobtender.start_time = get_block_timestamp();
-            blobtender.level_up();
+            set!(world, (blobtender));
             let index = blobtender.clients_served +1; 
             let current_client = CurrentClient {player, index, order: self.get_client_order(player, index)};
-            set!(world, (blobtender, current_client));
+            set!(world, (current_client));
         }
 
         fn set_addresses(world: IWorldDispatcher, seeder: ContractAddress, descriptor: ContractAddress) {
@@ -124,8 +125,6 @@ mod actions {
 
         fn get_client_blobert(world: IWorldDispatcher, player: ContractAddress, index: u32) -> ByteArray{
             let blobtender = get!(world, player, (Blobtender));
-            assert!(blobtender.start_time !=0, "level not started");
-            assert!(index <= self.get_queue_size(player), "index larger than queue size");
             let addresses = get!(world, ADDRESS_KEY, (Addresses));
             let Seeder = ISeederDispatcher {contract_address: addresses.seeder };
             let Descriptor = IDescriptorDispatcher {contract_address: addresses.seeder};
@@ -135,8 +134,6 @@ mod actions {
 
         fn get_client_order(world: IWorldDispatcher, player:ContractAddress, index: u32) -> DrinkType {
             let blobtender = get!(world, player, (Blobtender));
-            assert!(blobtender.start_time !=0, "level not started");
-            assert!(index <= self.get_queue_size(player), "index larger than queue size");
             let addresses = get!(world, ADDRESS_KEY, (Addresses));
             let Seeder = ISeederDispatcher {contract_address: addresses.seeder };
             let seed = Seeder.generate_seed(addresses.descriptor, blobtender.level, blobtender.start_time, index, player.into());
@@ -148,9 +145,11 @@ mod actions {
 
         fn get_queue_size(world: IWorldDispatcher, player: ContractAddress) -> u32{
             let blobtender = get!(world, player, (Blobtender));
-            assert!(blobtender.start_time != 0, "level not started");
+            if(blobtender.start_time == 0) {
+                return 0;
+            }
             let time_stamp = get_block_timestamp();
-            let queue_size: u64 = time_stamp - blobtender.start_time / 30;
+            let queue_size: u64 = ((time_stamp - blobtender.start_time) / 10) + 1;
             let res: u32 = queue_size.try_into().unwrap();
             res
         }
@@ -209,9 +208,11 @@ mod actions {
 
     fn handle_serve(self: @ContractState, world: IWorldDispatcher, player: ContractAddress) {
         let status = get_status(self, world, player);
+        set!(world, CurrentStatus {player,status});
         let mut blobtender = get!(world, player, (Blobtender));
-        let current_client = blobtender.clients_served + 1;
-        let correct = blobtender.serving.into() == self.get_client_order(player, current_client.try_into().unwrap());
+        let mut current_client = get!(world, player, (CurrentClient));    
+        let order: felt252 = current_client.order.into();    
+        let correct = blobtender.serving.into() == order;
         
         match status {
             Status::None => {
@@ -224,14 +225,19 @@ mod actions {
                 blobtender.game_over();
             },
             Status::InProgress => {
-                blobtender.serve(correct);
-                let next_client = blobtender.clients_served+1;
-                let next_order = self.get_client_order(player, next_client);
-                let current_client = CurrentClient {player, index: next_client, order: next_order};
-                set!(world, (current_client))
+                if(correct) {
+                    println!("served");
+                    blobtender.clients_served+=1;
+                    blobtender.serving=DrinkType::None;
+                    let next_client = blobtender.clients_served+1;
+                    let next_order = self.get_client_order(player, next_client);
+                    current_client = CurrentClient {player, index: next_client, order: next_order};
+                }
             }
 
         }
+        set!(world, (blobtender,current_client));
+
     }
 
     fn get_status(self: @ContractState, world: IWorldDispatcher, player: ContractAddress) -> Status {

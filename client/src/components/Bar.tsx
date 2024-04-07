@@ -3,7 +3,8 @@ import {Canvas, useThree} from "@react-three/fiber";
 import {Box, Plane, OrbitControls} from "@react-three/drei";
 import * as THREE from "three";
 import Blobert from "./Blobert";
-
+import Recipe from "./Recipe";
+import { recipes } from "../utils";
 interface BarProps {
     blob_position: [number, number, number]
     get_blobert: () => Promise<string>
@@ -15,6 +16,7 @@ const Bar: FC<BarProps> = ({blob_position, get_blobert}) => {
 
     return (
         <group position = {[0, 8, .1]} rotation = {new THREE.Euler(Math.PI/9,0,0)}>
+
             
             <mesh position={[0,-3,-1]}>
                 <boxGeometry args={[30,30,.1]}/>
@@ -71,6 +73,9 @@ const Bar: FC<BarProps> = ({blob_position, get_blobert}) => {
               <cylinderGeometry args={[1.5,1.5,1.5]}/>
               <meshBasicMaterial color="purple"/>
             </mesh>
+
+            <Recipe position = {[5,10,5]} recipe = {recipes[0]}/>
+            <Recipe position = {[15,10,5]} recipe = {recipes[15]}/>
 
             <Blobert position={blob_position} get_blobert={get_blobert} />
 

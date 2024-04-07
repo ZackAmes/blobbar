@@ -1,10 +1,14 @@
 import { useComponentValue } from "@dojoengine/react";
 import { Entity } from "@dojoengine/recs";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Direction } from "./utils";
 import { getEntityIdFromKeys, hexToAscii } from "@dojoengine/utils";
 import { useDojo } from "./dojo/useDojo";
-import Scene from "./Scene";
+import Bar from "./Bar";
+import { Canvas } from "@react-three/fiber";
+import * as THREE from "three";
+import { SVGLoader } from "three/examples/jsm/loaders/SVGLoader"
+import { OrbitControls } from "@react-three/drei";
 
 function App() {
     const {
@@ -31,91 +35,23 @@ function App() {
         blob_svg.map((hex) => {
             res += hexToAscii(hex)
         })
-        console.log(res);
+        return res.substring(1, res.length -1)
+
+
     }
-    get_blobert()
 
     return (
         <>
-            <button onClick={account?.create}>
-                {account?.isDeploying ? "deploying burner" : "create burner"}
-            </button>
+        <Suspense>
 
-            <div className="card">
-                <div>{`burners deployed: ${account.count}`}</div>
-                <div>
-                    select signer:{" "}
-                    <select
-                        value={account ? account.account.address : ""}
-                        onChange={(e) => account.select(e.target.value)}
-                    >
-                        {account?.list().map((account, index) => {
-                            return (
-                                <option value={account.address} key={index}>
-                                    {account.address}
-                                </option>
-                            );
-                        })}
-                    </select>
-                </div>
-                <div>
-                    <button onClick={() => account.clear()}>
-                        Clear burners
-                    </button>
-                    <p>
-                        You will need to Authorise the contracts before you can
-                        use a burner. See readme.
-                    </p>
-                </div>
+            <Canvas style={{height:800, width:800}}camera={{ position:[0,-8,4] }}>
+                <OrbitControls />
 
-                <div className="card">
-                <button onClick={() => spawn(account.account)}>Spawn</button>
-                <div>
-                    Position:{" "}
-                    {position
-                        ? `${position.x}, ${position.y}`
-                        : "Need to Spawn"}
-                </div>
-            </div>
+                <></>
+                <Bar get_blobert={get_blobert}/>
 
-            <div className="card">
-                <div>
-                    <button
-                        onClick={() =>
-                            position && position.y > 0
-                                ? move(account.account, Direction.Up)
-                                : console.log("Reach the borders of the world.")
-                        }
-                    >
-                        Move Up
-                    </button>
-                </div>
-                <div>
-                    <button
-                        onClick={() =>
-                            position && position.x > 0
-                                ? move(account.account, Direction.Left)
-                                : console.log("Reach the borders of the world.")
-                        }
-                    >
-                        Move Left
-                    </button>
-                    <button
-                        onClick={() => move(account.account, Direction.Right)}
-                    >
-                        Move Right
-                    </button>
-                </div>
-                <div>
-                    <button
-                        onClick={() => move(account.account, Direction.Down)}
-                    >
-                        Move Down
-                    </button>
-                </div>
-            </div>
-            <Scene />
-        </div>
+            </Canvas>
+        </Suspense>
         </>
     );
 }

@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import * as THREE from "three";
 
 interface BlobertProps {
+    position: [number, number, number]
     get_blobert: () => Promise<string>;
 }
 
-const Blobert = ({get_blobert}: BlobertProps) => {
+const Blobert = ({get_blobert, position}: BlobertProps) => {
     const [texture, setTexture] = useState(new THREE.Texture);
   
     useEffect(() => {
@@ -27,7 +28,7 @@ const Blobert = ({get_blobert}: BlobertProps) => {
     if (!texture) return null;
   
     return (
-      <mesh position={[0,8,.1]}rotation = {new THREE.Euler(Math.PI/4,0,0)}>
+      <mesh position={position} rotation = {new THREE.Euler(Math.PI/4,0,0)}>
         <planeGeometry args={[3, 3]} />
         <meshBasicMaterial map={texture} />
       </mesh>

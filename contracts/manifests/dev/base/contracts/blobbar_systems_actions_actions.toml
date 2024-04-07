@@ -1,6 +1,6 @@
 kind = "DojoContract"
-class_hash = "0x6d2d86e597fc7ce99c562cf7d6904f75e57ea60acf83118c67ee4e07c355f27"
-original_class_hash = "0x6d2d86e597fc7ce99c562cf7d6904f75e57ea60acf83118c67ee4e07c355f27"
+class_hash = "0x1c671d32a5938b013b0d99e2288b5ddb55a67369d7b37a7dd4d8a8b7552681e"
+original_class_hash = "0x1c671d32a5938b013b0d99e2288b5ddb55a67369d7b37a7dd4d8a8b7552681e"
 base_class_hash = "0x0"
 abi = "manifests/dev/abis/base/contracts/blobbar_systems_actions_actions.json"
 reads = []

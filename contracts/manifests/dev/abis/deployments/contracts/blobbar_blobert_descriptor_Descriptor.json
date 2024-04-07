@@ -81,7 +81,7 @@
     "name": "blobbar::blobert::types::seeder::Seed",
     "members": [
       {
-        "name": "background",
+        "name": "order",
         "type": "core::integer::u8"
       },
       {

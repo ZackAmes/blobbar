@@ -1,7 +1,9 @@
-use blobbar::models::types::{Direction, TileType, Vec2, DrinkType};
-use blobbar::models::blobtender::{Blobtender};
+use blobbar::models::types::{Direction, TileType, Vec2, DrinkType, Status, Level};
+use blobbar::models::blobtender::{Blobtender, BlobtenderTrait};
 use blobbar::blobert::types::seeder::Seed;
 use starknet::ContractAddress;
+use dojo::world::IWorldDispatcher;
+
 
 // define the interface
 #[dojo::interface]
@@ -10,9 +12,9 @@ trait IActions {
     fn move(direction: Direction);
     fn set_addresses(seeder: ContractAddress, descriptor: ContractAddress);
     fn get_random_blobert() -> ByteArray;
-    fn get_client_blobert(index: u8) -> ByteArray;
-    fn get_client_order(index: u8) -> DrinkType;
-    fn get_queue_size() -> u8;
+    fn get_client_blobert(player: ContractAddress, index: u32) -> ByteArray;
+    fn get_client_order(player: ContractAddress, index: u32) -> DrinkType;
+    fn get_queue_size(player: ContractAddress) -> u32;
     fn start_level();
 }
 
@@ -28,7 +30,7 @@ mod actions {
 
     use starknet::{ContractAddress, get_caller_address, get_block_timestamp};
     use blobbar::models::{
-                        types::{Level, Direction, TileType, DrinkType, DrinkTypeTrait, IngredientType, Vec2}, 
+                        types::{Level, Direction, TileType, DrinkType, DrinkTypeTrait, IngredientType, Vec2, Status}, 
                         blobtender::{Blobtender, BlobtenderTrait},
                         addresses::{Addresses}};
     use blobbar::blobert::seeder::{ISeederDispatcher, ISeederDispatcherTrait};
@@ -42,7 +44,7 @@ mod actions {
         fn spawn(world: IWorldDispatcher) {
             let player = get_caller_address();
             let blobtender = get!(world, player, (Blobtender));
-            assert!(blobtender.high_score==0 && blobtender.clients_served==0, "already spawned");
+            assert!(blobtender.high_score==0 && blobtender.start_time==0, "already spawned");
             let test_seed = Seed {order: 0, armour: 0, mask: 0, weapon: 0, jewelry: 0};
             let blobtender = BlobtenderTrait::new(player, test_seed, start_time: 0);
             set!(world, (blobtender));
@@ -51,7 +53,7 @@ mod actions {
         fn start_level(world: IWorldDispatcher) {
             let player = get_caller_address();
             let mut blobtender = get!(world, player, (Blobtender));
-            assert!(blobtender.level != Level::None, "not spawned");
+            assert!(blobtender.start_time == 0, "level in progress");
             blobtender.start_time = get_block_timestamp();
             blobtender.level_up();
             set!(world, (blobtender));
@@ -108,7 +110,7 @@ mod actions {
                     blobtender.serving = DrinkType::None;
                 },
                 TileType::Bar => {
-                    //TODO: serve
+                    handle_serve(self, world, player);
                 },
                 TileType::Ingredient(ingedient_type) => {
                     blobtender.serving = blobtender.serving.combine(ingedient_type);
@@ -118,11 +120,10 @@ mod actions {
 
         }
 
-        fn get_client_blobert(world: IWorldDispatcher, index: u8) -> ByteArray{
-            let player = get_caller_address();
+        fn get_client_blobert(world: IWorldDispatcher, player: ContractAddress, index: u32) -> ByteArray{
             let blobtender = get!(world, player, (Blobtender));
             assert!(blobtender.start_time !=0, "level not started");
-            assert!(index <= self.get_queue_size(), "index larger than queue size");
+            assert!(index <= self.get_queue_size(player), "index larger than queue size");
             let addresses = get!(world, ADDRESS_KEY, (Addresses));
             let Seeder = ISeederDispatcher {contract_address: addresses.seeder };
             let Descriptor = IDescriptorDispatcher {contract_address: addresses.seeder};
@@ -130,27 +131,26 @@ mod actions {
             Descriptor.svg_image(seed)
         }
 
-        fn get_client_order(world: IWorldDispatcher, index: u8) -> DrinkType {
-            let player = get_caller_address();
+        fn get_client_order(world: IWorldDispatcher, player:ContractAddress, index: u32) -> DrinkType {
             let blobtender = get!(world, player, (Blobtender));
             assert!(blobtender.start_time !=0, "level not started");
-            assert!(index <= self.get_queue_size(), "index larger than queue size");
+            assert!(index <= self.get_queue_size(player), "index larger than queue size");
             let addresses = get!(world, ADDRESS_KEY, (Addresses));
             let Seeder = ISeederDispatcher {contract_address: addresses.seeder };
             let seed = Seeder.generate_seed(addresses.descriptor, blobtender.level, blobtender.start_time, index, player.into());
-            let res:DrinkType = seed.order.into();
+            let res:DrinkType = (seed.order + 2).into();
             res
+            
             
         }
 
-        fn get_queue_size(world: IWorldDispatcher) -> u8{
-            let player = get_caller_address();
+        fn get_queue_size(world: IWorldDispatcher, player: ContractAddress) -> u32{
             let blobtender = get!(world, player, (Blobtender));
             assert!(blobtender.start_time != 0, "level not started");
             let time_stamp = get_block_timestamp();
             let queue_size: u64 = time_stamp - blobtender.start_time / 30;
-            let res: u8 = queue_size.try_into().unwrap();
-            res + 2
+            let res: u32 = queue_size.try_into().unwrap();
+            res
         }
     }
     #[abi(embed_v0)]
@@ -201,18 +201,85 @@ mod actions {
             }
         }
 
+
     }
 
-    
-}
 
-fn next_state(mut blobtender: Blobtender, direction: Direction) -> Blobtender {
-    match direction {
-        Direction::None => { return blobtender; },
-        Direction::Left => { blobtender.position.x -= 1; },
-        Direction::Right => { blobtender.position.x += 1; },
-        Direction::Up => { blobtender.position.y -= 1; },
-        Direction::Down => { blobtender.position.y += 1; },
-    };
-    blobtender
+    fn handle_serve(self: @ContractState, world: IWorldDispatcher, player: ContractAddress) {
+        let status = get_status(self, world, player);
+        let mut blobtender = get!(world, player, (Blobtender));
+        let current_client = blobtender.clients_served + 1;
+        let correct = blobtender.serving.into() == self.get_client_order(player, current_client.try_into().unwrap());
+        match status {
+            Status::None => {
+                panic!("??");
+            },
+            Status::Completed => {
+                blobtender.level_up();
+            },
+            Status::Failed => {
+                blobtender.game_over();
+            },
+            Status::InProgress => {
+                blobtender.serve(correct);
+            }
+
+        }
+    }
+
+    fn get_status(self: @ContractState, world: IWorldDispatcher, player: ContractAddress) -> Status {
+        let blobtender = get!(world, player, (Blobtender));
+        let queue = self.get_queue_size(player);
+        let elapsed_time = get_block_timestamp() - blobtender.start_time;
+
+        match blobtender.level {
+            Level::None => {
+                Status::None
+            },
+            Level::One => {
+                if(blobtender.clients_served >= 10 && elapsed_time <= 450) {
+                    Status::Completed
+                }
+                else if (elapsed_time <= 450) {
+                    Status::InProgress
+                }
+                else {
+                    Status::Failed
+                }
+            },
+            Level::Two => {
+                if(blobtender.clients_served >= 20 && elapsed_time <= 600) {
+                    Status::Completed
+                }
+                else if (elapsed_time <= 600) {
+                    Status::InProgress
+                }
+                else {
+                    Status::Failed
+                }
+            },
+            Level::Three => {
+                if(blobtender.clients_served >= 30 && elapsed_time <= 900) {
+                    Status::Completed
+                }
+                else if (elapsed_time <= 900) {
+                    Status::InProgress
+                }
+                else {
+                    Status::Failed
+                }
+            },
+            Level::Endless => {
+                if(elapsed_time <= 90 && queue - blobtender.clients_served <= 10) {
+                    Status::InProgress
+                }
+                else {
+                    Status::Failed
+                }
+            }
+        }
+    }
+
+
+    
 }

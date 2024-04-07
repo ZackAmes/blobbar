@@ -7,7 +7,7 @@ trait ISeeder<TContractState> {
         descriptor_addr: starknet::ContractAddress,
         level: Level,
         time_stamp: u64,
-        index: u8,
+        index: u32,
         address: felt252
     ) -> Seed;
 }
@@ -35,7 +35,7 @@ mod Seeder {
             descriptor_addr: starknet::ContractAddress,
             level: Level,
             time_stamp: u64,
-            index: u8,
+            index: u32,
             address:felt252
         ) -> Seed {
             let descriptor = IDescriptorDispatcher { contract_address: descriptor_addr };

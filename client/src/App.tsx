@@ -25,6 +25,7 @@ function App() {
 
     // get current component values
     const blobtender = useComponentValue(Blobtender, entityId);
+    console.log(blobtender);
     let position = blobtender?.position;
 
     let get_blobert = async () => {
@@ -36,13 +37,14 @@ function App() {
         return res.substring(1, res.length -1)
     }
 
+    let blob_position: [number, number, number] = [position? position.x: 0, -.75, .75]
     return (
         <>
         <Suspense>
 
-            <Canvas style={{height:800, width:800}} camera={{ position:[0,-8,4] }}>
+            <Canvas style={{height:800, width:800}} camera={{ position:[0,-15,6] }}>
                 <></>
-                <Bar get_blobert={get_blobert}/>
+                <Bar blob_position = {blob_position} get_blobert={get_blobert}/>
 
             </Canvas>
         </Suspense>

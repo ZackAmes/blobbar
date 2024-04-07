@@ -677,8 +677,8 @@
     {
       "kind": "DojoContract",
       "address": "0x9f7dbda0ced84f68c14ee07b753f1b019651e7c0d26838f65553b6061aeb92",
-      "class_hash": "0x78dacba0558605242522393491c0222f595164afd2176507c80575c67a147fb",
-      "original_class_hash": "0x78dacba0558605242522393491c0222f595164afd2176507c80575c67a147fb",
+      "class_hash": "0x13842c0df8c8d06577671271d9d1e9d1545fe04bee87a5e6cb087b89379aacf",
+      "original_class_hash": "0x13842c0df8c8d06577671271d9d1e9d1545fe04bee87a5e6cb087b89379aacf",
       "base_class_hash": "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76",
       "abi": [
         {
@@ -763,7 +763,7 @@
           "name": "blobbar::blobert::types::seeder::Seed",
           "members": [
             {
-              "name": "background",
+              "name": "order",
               "type": "core::integer::u8"
             },
             {
@@ -982,8 +982,8 @@
     {
       "kind": "DojoContract",
       "address": "0x6793d351f9e180f451019db2b30ad8d11bb48c4fe6c31f038097f50224190f7",
-      "class_hash": "0x446cd408777d2c8ca4f5eddb83d8bfaef7f818d53d0d340edd83180c13842f5",
-      "original_class_hash": "0x446cd408777d2c8ca4f5eddb83d8bfaef7f818d53d0d340edd83180c13842f5",
+      "class_hash": "0x41f6b30adf338c19e69693af020502618f03f39f8dddf092b40a5883a33f19e",
+      "original_class_hash": "0x41f6b30adf338c19e69693af020502618f03f39f8dddf092b40a5883a33f19e",
       "base_class_hash": "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76",
       "abi": [
         {
@@ -1046,11 +1046,37 @@
           "interface_name": "blobbar::blobert::seeder::ISeeder"
         },
         {
+          "type": "enum",
+          "name": "blobbar::models::types::Level",
+          "variants": [
+            {
+              "name": "None",
+              "type": "()"
+            },
+            {
+              "name": "One",
+              "type": "()"
+            },
+            {
+              "name": "Two",
+              "type": "()"
+            },
+            {
+              "name": "Three",
+              "type": "()"
+            },
+            {
+              "name": "Endless",
+              "type": "()"
+            }
+          ]
+        },
+        {
           "type": "struct",
           "name": "blobbar::blobert::types::seeder::Seed",
           "members": [
             {
-              "name": "background",
+              "name": "order",
               "type": "core::integer::u8"
             },
             {
@@ -1084,7 +1110,19 @@
                   "type": "core::starknet::contract_address::ContractAddress"
                 },
                 {
-                  "name": "salt",
+                  "name": "level",
+                  "type": "blobbar::models::types::Level"
+                },
+                {
+                  "name": "time_stamp",
+                  "type": "core::integer::u64"
+                },
+                {
+                  "name": "index",
+                  "type": "core::integer::u8"
+                },
+                {
+                  "name": "address",
                   "type": "core::felt252"
                 }
               ],
@@ -1165,8 +1203,8 @@
     {
       "kind": "DojoContract",
       "address": "0x3dd4f36c116335afd65dd8b8603c548101eb2bf476b971021528ba31f2f1f9c",
-      "class_hash": "0x5aabcee77eefa2f0088afc9dac23f651360b434dbcbcb05e9738b0052456363",
-      "original_class_hash": "0x5aabcee77eefa2f0088afc9dac23f651360b434dbcbcb05e9738b0052456363",
+      "class_hash": "0x326dd5ad312328800ee13e4479b0820e879ccdb3d018e64755702b253cc7e67",
+      "original_class_hash": "0x326dd5ad312328800ee13e4479b0820e879ccdb3d018e64755702b253cc7e67",
       "base_class_hash": "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76",
       "abi": [
         {
@@ -1273,6 +1311,88 @@
           ]
         },
         {
+          "type": "enum",
+          "name": "blobbar::models::types::DrinkType",
+          "variants": [
+            {
+              "name": "None",
+              "type": "()"
+            },
+            {
+              "name": "Ew",
+              "type": "()"
+            },
+            {
+              "name": "Grog",
+              "type": "()"
+            },
+            {
+              "name": "Mead",
+              "type": "()"
+            },
+            {
+              "name": "Whiskey",
+              "type": "()"
+            },
+            {
+              "name": "Soda",
+              "type": "()"
+            },
+            {
+              "name": "Juice",
+              "type": "()"
+            },
+            {
+              "name": "MeadSprtiz",
+              "type": "()"
+            },
+            {
+              "name": "KnightsSpritz",
+              "type": "()"
+            },
+            {
+              "name": "RoyalHoneyedNectar",
+              "type": "()"
+            },
+            {
+              "name": "NobleNectar",
+              "type": "()"
+            },
+            {
+              "name": "CastleCitrusFizz",
+              "type": "()"
+            },
+            {
+              "name": "RegalRefresher",
+              "type": "()"
+            },
+            {
+              "name": "MonarchsMingle",
+              "type": "()"
+            },
+            {
+              "name": "CourtlyCooler",
+              "type": "()"
+            },
+            {
+              "name": "WizardsWhirl",
+              "type": "()"
+            },
+            {
+              "name": "MajesticMetheglin",
+              "type": "()"
+            },
+            {
+              "name": "SovereignSwirl",
+              "type": "()"
+            },
+            {
+              "name": "ChivalrousChalice",
+              "type": "()"
+            }
+          ]
+        },
+        {
           "type": "interface",
           "name": "blobbar::systems::actions::IActions",
           "items": [
@@ -1320,6 +1440,56 @@
                   "type": "core::byte_array::ByteArray"
                 }
               ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "get_client_blobert",
+              "inputs": [
+                {
+                  "name": "index",
+                  "type": "core::integer::u8"
+                }
+              ],
+              "outputs": [
+                {
+                  "type": "core::byte_array::ByteArray"
+                }
+              ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "get_client_order",
+              "inputs": [
+                {
+                  "name": "index",
+                  "type": "core::integer::u8"
+                }
+              ],
+              "outputs": [
+                {
+                  "type": "blobbar::models::types::DrinkType"
+                }
+              ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "get_queue_size",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "core::integer::u8"
+                }
+              ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "start_level",
+              "inputs": [],
+              "outputs": [],
               "state_mutability": "view"
             }
           ]
@@ -1771,7 +1941,12 @@
           "key": false
         },
         {
-          "name": "points",
+          "name": "clients_served",
+          "type": "u32",
+          "key": false
+        },
+        {
+          "name": "high_score",
           "type": "u32",
           "key": false
         },
@@ -1779,10 +1954,15 @@
           "name": "blobert",
           "type": "Seed",
           "key": false
+        },
+        {
+          "name": "start_time",
+          "type": "u64",
+          "key": false
         }
       ],
-      "class_hash": "0x2ee89fbccd9097075c3ed5616d006d896171f2e19002cc53c002ed1068bf4cc",
-      "original_class_hash": "0x2ee89fbccd9097075c3ed5616d006d896171f2e19002cc53c002ed1068bf4cc",
+      "class_hash": "0x81f51de83467639dfe38bb57db63fff3b91220591894405514e92c2d9d7a0a",
+      "original_class_hash": "0x81f51de83467639dfe38bb57db63fff3b91220591894405514e92c2d9d7a0a",
       "abi": [
         {
           "type": "impl",
@@ -2084,7 +2264,7 @@
           "name": "blobbar::blobert::types::seeder::Seed",
           "members": [
             {
-              "name": "background",
+              "name": "order",
               "type": "core::integer::u8"
             },
             {
@@ -2126,12 +2306,20 @@
               "type": "blobbar::models::types::DrinkType"
             },
             {
-              "name": "points",
+              "name": "clients_served",
+              "type": "core::integer::u32"
+            },
+            {
+              "name": "high_score",
               "type": "core::integer::u32"
             },
             {
               "name": "blobert",
               "type": "blobbar::blobert::types::seeder::Seed"
+            },
+            {
+              "name": "start_time",
+              "type": "core::integer::u64"
             }
           ]
         },

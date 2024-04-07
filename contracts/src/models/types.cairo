@@ -42,6 +42,13 @@ impl Vec2Impl of Vec2Trait {
     }
 }
 
+#[derive(Serde, Copy, Drop, Introspect)]
+enum Status {
+    None,
+    Completed,
+    Failed,
+    InProgress
+}
 
 #[derive(Serde, Copy, Drop, Introspect)]
 enum Direction {
@@ -64,7 +71,7 @@ impl DirectionIntoFelt252 of Into<Direction, felt252> {
     }
 }
 
-#[derive(Serde, Copy, Drop, Introspect)]
+#[derive(Serde, Copy, Drop, Introspect, PartialEq)]
 enum DrinkType {
     None,
     Ew,

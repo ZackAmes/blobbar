@@ -129,7 +129,7 @@ mod Descriptor {
             let svg_root: Tag = TagImpl::new("svg")
                 .attr("xmlns", "http://www.w3.org/2000/svg")
                 .attr("preserveAspectRatio", "xMinYMin meet")
-                .attr("style", "image-rendering: pixelated")
+                .attr("style", "background:transparent; image-rendering: pixelated")
                 .attr("viewBox", "0 0 350 350");
 
             let svg = svg_root

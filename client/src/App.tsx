@@ -4,11 +4,9 @@ import { Suspense, useEffect, useState } from "react";
 import { Direction } from "./utils";
 import { getEntityIdFromKeys, hexToAscii } from "@dojoengine/utils";
 import { useDojo } from "./dojo/useDojo";
-import Bar from "./Bar";
+import Bar from "./components/Bar";
 import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
-import { SVGLoader } from "three/examples/jsm/loaders/SVGLoader"
-import { OrbitControls } from "@react-three/drei";
 
 function App() {
     const {
@@ -36,17 +34,13 @@ function App() {
             res += hexToAscii(hex)
         })
         return res.substring(1, res.length -1)
-
-
     }
 
     return (
         <>
         <Suspense>
 
-            <Canvas style={{height:800, width:800}}camera={{ position:[0,-8,4] }}>
-                <OrbitControls />
-
+            <Canvas style={{height:800, width:800}} camera={{ position:[0,-8,4] }}>
                 <></>
                 <Bar get_blobert={get_blobert}/>
 

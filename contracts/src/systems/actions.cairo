@@ -166,7 +166,8 @@ mod actions {
                         2 => TileType::Bar,
                         3 => TileType::Bar,
                         4 => TileType::Bar,
-                        5=> TileType::Bar,
+                        5 => TileType::Bar,
+                        6 => TileType::Bar,
                         _ => TileType::None
                     }
                 },
@@ -177,7 +178,8 @@ mod actions {
                         2 => TileType::Ground,
                         3 => TileType::Ground,
                         4 => TileType::Ground,
-                        5 => TileType::Trash,
+                        5 => TileType::Ground,
+                        6 => TileType::Trash,
                         _ => TileType::None
                     }
                 },
@@ -186,9 +188,10 @@ mod actions {
                         0 => TileType::Bar,
                         1 => TileType::Ingredient(IngredientType::Grog),
                         2 => TileType::Ingredient(IngredientType::Mead),
-                        3 => TileType::Ingredient(IngredientType::Soda),
-                        4 => TileType::Ingredient(IngredientType::Juice),
-                        5 => TileType::Bar,
+                        3 => TileType::Ingredient(IngredientType::Whiskey),
+                        4 => TileType::Ingredient(IngredientType::Soda),
+                        5 => TileType::Ingredient(IngredientType::Juice),
+                        6 => TileType::Bar,
                         _ => TileType::None
                     }
                 },

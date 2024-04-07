@@ -1,6 +1,6 @@
 kind = "DojoModel"
-class_hash = "0x2ee89fbccd9097075c3ed5616d006d896171f2e19002cc53c002ed1068bf4cc"
-original_class_hash = "0x2ee89fbccd9097075c3ed5616d006d896171f2e19002cc53c002ed1068bf4cc"
+class_hash = "0x1c51f0d840a4cb56bcf7332e115b8b613ce04acf15d9f55e319914b600b0e4e"
+original_class_hash = "0x1c51f0d840a4cb56bcf7332e115b8b613ce04acf15d9f55e319914b600b0e4e"
 abi = "manifests/dev/abis/base/models/blobbar_models_blobtender_blobtender.json"
 name = "blobbar::models::blobtender::blobtender"
 
@@ -32,4 +32,9 @@ key = false
 [[members]]
 name = "blobert"
 type = "Seed"
+key = false
+
+[[members]]
+name = "start_time"
+type = "u64"
 key = false

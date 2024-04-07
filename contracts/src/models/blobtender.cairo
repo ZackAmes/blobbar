@@ -11,14 +11,15 @@ struct Blobtender {
     position: Vec2,
     serving: DrinkType,
     points: u32,
-    blobert: Seed
+    blobert: Seed,
+    start_time: u64
 }
 
 #[generate_trait]
 impl BlobtenderImpl of BlobtenderTrait {
 
-    fn new(player: ContractAddress, blobert: Seed) -> Blobtender {
-        Blobtender {player, level:Level::One, position: Vec2 {x: 2, y:1}, serving: DrinkType::None, points: 0, blobert}
+    fn new(player: ContractAddress, blobert: Seed, start_time: u64) -> Blobtender {
+        Blobtender {player, level:Level::One, position: Vec2 {x: 2, y:1}, serving: DrinkType::None, points: 0, blobert, start_time}
     }
 
     fn serve(ref self: Blobtender) {

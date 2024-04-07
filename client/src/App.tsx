@@ -2,7 +2,7 @@ import { useComponentValue } from "@dojoengine/react";
 import { Entity } from "@dojoengine/recs";
 import { useEffect, useState } from "react";
 import { Direction } from "./utils";
-import { getEntityIdFromKeys } from "@dojoengine/utils";
+import { getEntityIdFromKeys, hexToAscii } from "@dojoengine/utils";
 import { useDojo } from "./dojo/useDojo";
 import Scene from "./Scene";
 
@@ -23,10 +23,17 @@ function App() {
 
     // get current component values
     const blobtender = useComponentValue(Blobtender, entityId);
-    console.log(blobtender);
     let position = blobtender?.position;
-    let blobertsvg = blobert();
-    console.log(blobertsvg)
+
+    let get_blobert = async () => {
+        let blob_svg:Array<string> = await blobert();
+        let res = "";
+        blob_svg.map((hex) => {
+            res += hexToAscii(hex)
+        })
+        console.log(res);
+    }
+    get_blobert()
 
     return (
         <>

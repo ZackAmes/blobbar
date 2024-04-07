@@ -347,6 +347,10 @@
       {
         "name": "blobert",
         "type": "blobbar::blobert::types::seeder::Seed"
+      },
+      {
+        "name": "start_time",
+        "type": "core::integer::u64"
       }
     ]
   },

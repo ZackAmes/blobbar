@@ -21,7 +21,7 @@ trait IActionsComputed {
 mod actions {
     use super::{IActions, IActionsComputed};
 
-    use starknet::{ContractAddress, get_caller_address};
+    use starknet::{ContractAddress, get_caller_address, get_block_timestamp};
     use blobbar::models::{
                         types::{Level, Direction, TileType, DrinkType, DrinkTypeTrait, IngredientType, Vec2}, 
                         blobtender::{Blobtender, BlobtenderTrait},
@@ -40,7 +40,8 @@ mod actions {
             let level = blobtender.level;
             assert!(level == Level::None, "already spawned");
             let test_seed = Seed {background: 0, armour: 0, mask: 0, weapon: 0, jewelry: 0};
-            let blobtender = BlobtenderTrait::new(player, test_seed);
+            let start_time = get_block_timestamp();
+            let blobtender = BlobtenderTrait::new(player, test_seed, start_time);
             set!(world, (blobtender));
         }
 

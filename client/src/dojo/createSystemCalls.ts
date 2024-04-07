@@ -1,4 +1,4 @@
-import { AccountInterface } from "starknet";
+import { AccountInterface, CallContractResponse } from "starknet";
 import { Entity, getComponentValue } from "@dojoengine/recs";
 import { uuid } from "@latticexyz/utils";
 import { ClientComponents } from "./createClientComponents";
@@ -48,13 +48,10 @@ export function createSystemCalls(
     };
 
     const blobert = async () => {
-        try {
-            const res = await client.actions.get_random_blobert();
-            console.log(res);
-        }catch(e) {
-            console.log(e)
-        }
+        const res = await client.actions.get_random_blobert();
+        return res;
     }
+
     const move = async (account: AccountInterface, direction: Direction) => {
         const entityId = getEntityIdFromKeys([
             BigInt(account.address),

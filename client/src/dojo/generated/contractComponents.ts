@@ -21,8 +21,26 @@ export function defineContractComponents(world: World) {
                 {
                     metadata: {
                         name: "Blobtender",
-                        types: ["contractaddress", "u8", "u8", "u32", "u32"],
+                        types: ["contractaddress", "u8", "u8", "u32", "u8"],
                         customTypes: ["Level", "Vec2", "DrinkType"],
+                    },
+                }
+            );
+        })(),
+        CurrentClient: (() => {
+            return defineComponent(
+                world,
+                {
+                    player: RecsType.BigInt,
+                    index: RecsType.Number,
+                    order: RecsType.Number
+
+                },
+                {
+                    metadata: {
+                        name: "Blobtender",
+                        types: ["contractaddress","u32", "u8"],
+                        customTypes: ["DrinkType"],
                     },
                 }
             );

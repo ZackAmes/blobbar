@@ -1,6 +1,6 @@
 kind = "DojoModel"
-class_hash = "0x81f51de83467639dfe38bb57db63fff3b91220591894405514e92c2d9d7a0a"
-original_class_hash = "0x81f51de83467639dfe38bb57db63fff3b91220591894405514e92c2d9d7a0a"
+class_hash = "0x6d671d3df25f33a6994e65a3160b8874633769fc85d19d3a6a668ea375fdf90"
+original_class_hash = "0x6d671d3df25f33a6994e65a3160b8874633769fc85d19d3a6a668ea375fdf90"
 abi = "manifests/dev/abis/base/models/blobbar_models_blobtender_blobtender.json"
 name = "blobbar::models::blobtender::blobtender"
 
@@ -21,7 +21,7 @@ key = false
 
 [[members]]
 name = "serving"
-type = "DrinkType"
+type = "u8"
 key = false
 
 [[members]]

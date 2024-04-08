@@ -14,7 +14,7 @@ function App() {
     const {
         setup: {
             systemCalls: { spawn, move, blobert, client_blobert, start_level },
-            clientComponents: { Blobtender },
+            clientComponents: { Blobtender, CurrentClient },
         },
         account,
     } = useDojo();
@@ -27,6 +27,8 @@ function App() {
 
     // get current component values
     const blobtender = useComponentValue(Blobtender, entityId);
+    const client = useComponentValue(CurrentClient, entityId);
+    console.log(client)
     console.log(blobtender);
     let position = blobtender?.position;
     let start_time = blobtender?.start_time;
@@ -39,8 +41,16 @@ function App() {
         })
         return res.substring(1, res.length -1)
     }
-    let blob_x = position? position.x*-3 +6 : 0
-    let blob_position: [number, number, number] = [blob_x, -.75, .75]
+    let get_blob_x = (blob_x: number | undefined) => {
+        if(blob_x == 1) return -6
+        if(blob_x == 2) return -3
+        if(blob_x == 3) return 0
+        if(blob_x == 4) return 3
+        if(blob_x == 5) return 6
+        else return 0
+    }
+    let x = get_blob_x(position? position.x : 3);
+    let blob_position: [number, number, number] = [x, -.75, .75]
     return (
         <>
         <Suspense>

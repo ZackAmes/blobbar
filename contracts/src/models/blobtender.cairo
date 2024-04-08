@@ -9,7 +9,7 @@ struct Blobtender {
     player: ContractAddress,
     level: Level,
     position: Vec2,
-    serving: DrinkType,
+    serving: u8,
     clients_served: u32,
     high_score: u32,
     blobert: Seed,
@@ -21,7 +21,7 @@ struct CurrentClient {
     #[key]
     player: ContractAddress,
     index: u32,
-    order: DrinkType
+    order: u8
 }
 
 #[derive(Model, Copy, Drop, Serde)]
@@ -35,7 +35,7 @@ struct CurrentStatus {
 impl BlobtenderImpl of BlobtenderTrait {
 
     fn new(player: ContractAddress, blobert: Seed, start_time: u64) -> Blobtender {
-        Blobtender {player, level:Level::None, position: Vec2 {x: 2, y:1}, serving: DrinkType::None, clients_served: 0,high_score: 0, blobert, start_time}
+        Blobtender {player, level:Level::None, position: Vec2 {x: 2, y:1}, serving: 0, clients_served: 0,high_score: 0, blobert, start_time}
     }
 
     fn game_over(ref self: Blobtender) {
@@ -45,7 +45,7 @@ impl BlobtenderImpl of BlobtenderTrait {
         self.clients_served = 0;
         self.level = Level::None;
         self.position = Vec2 {x:2, y:1};
-        self.serving = DrinkType::None;
+        self.serving = 0;
         self.start_time = 0;
     }
 

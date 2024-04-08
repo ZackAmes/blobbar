@@ -213,88 +213,6 @@
     ]
   },
   {
-    "type": "enum",
-    "name": "blobbar::models::types::DrinkType",
-    "variants": [
-      {
-        "name": "None",
-        "type": "()"
-      },
-      {
-        "name": "Ew",
-        "type": "()"
-      },
-      {
-        "name": "Grog",
-        "type": "()"
-      },
-      {
-        "name": "Mead",
-        "type": "()"
-      },
-      {
-        "name": "Whiskey",
-        "type": "()"
-      },
-      {
-        "name": "Soda",
-        "type": "()"
-      },
-      {
-        "name": "Juice",
-        "type": "()"
-      },
-      {
-        "name": "MeadSprtiz",
-        "type": "()"
-      },
-      {
-        "name": "KnightsSpritz",
-        "type": "()"
-      },
-      {
-        "name": "RoyalHoneyedNectar",
-        "type": "()"
-      },
-      {
-        "name": "NobleNectar",
-        "type": "()"
-      },
-      {
-        "name": "CastleCitrusFizz",
-        "type": "()"
-      },
-      {
-        "name": "RegalRefresher",
-        "type": "()"
-      },
-      {
-        "name": "MonarchsMingle",
-        "type": "()"
-      },
-      {
-        "name": "CourtlyCooler",
-        "type": "()"
-      },
-      {
-        "name": "WizardsWhirl",
-        "type": "()"
-      },
-      {
-        "name": "MajesticMetheglin",
-        "type": "()"
-      },
-      {
-        "name": "SovereignSwirl",
-        "type": "()"
-      },
-      {
-        "name": "ChivalrousChalice",
-        "type": "()"
-      }
-    ]
-  },
-  {
     "type": "struct",
     "name": "blobbar::blobert::types::seeder::Seed",
     "members": [
@@ -338,7 +256,7 @@
       },
       {
         "name": "serving",
-        "type": "blobbar::models::types::DrinkType"
+        "type": "core::integer::u8"
       },
       {
         "name": "clients_served",

@@ -13,7 +13,7 @@ trait IActions {
     fn set_addresses(seeder: ContractAddress, descriptor: ContractAddress);
     fn get_random_blobert() -> ByteArray;
     fn get_client_blobert(player: ContractAddress, index: u32) -> ByteArray;
-    fn get_client_order(player: ContractAddress, index: u32) -> DrinkType;
+    fn get_client_order(player: ContractAddress, index: u32) -> u8;
     fn get_queue_size(player: ContractAddress) -> u32;
     fn start_level();
 }
@@ -110,13 +110,16 @@ mod actions {
                     blobtender.position = next_pos;
                 },
                 TileType::Trash => {
-                    blobtender.serving = DrinkType::None;
+                    blobtender.serving = 0;
                 },
                 TileType::Bar => {
                     handle_serve(self, world, player);
                 },
                 TileType::Ingredient(ingedient_type) => {
-                    blobtender.serving = blobtender.serving.combine(ingedient_type);
+                    let drink:DrinkType = blobtender.serving.into();
+                    let temp:felt252 = drink.combine(ingedient_type).into();
+                    let new: u8 = temp.try_into().unwrap();
+                    blobtender.serving = new;
                 }
             }
             set!(world, (blobtender));
@@ -132,13 +135,12 @@ mod actions {
             Descriptor.svg_image(seed)
         }
 
-        fn get_client_order(world: IWorldDispatcher, player:ContractAddress, index: u32) -> DrinkType {
+        fn get_client_order(world: IWorldDispatcher, player:ContractAddress, index: u32) -> u8 {
             let blobtender = get!(world, player, (Blobtender));
             let addresses = get!(world, ADDRESS_KEY, (Addresses));
             let Seeder = ISeederDispatcher {contract_address: addresses.seeder };
             let seed = Seeder.generate_seed(addresses.descriptor, blobtender.level, blobtender.start_time, index, player.into());
-            let res:DrinkType = (seed.order + 2).into();
-            res
+            seed.order + 2
             
             
         }
@@ -228,7 +230,7 @@ mod actions {
                 if(correct) {
                     println!("served");
                     blobtender.clients_served+=1;
-                    blobtender.serving=DrinkType::None;
+                    blobtender.serving=0;
                     let next_client = blobtender.clients_served+1;
                     let next_order = self.get_client_order(player, next_client);
                     current_client = CurrentClient {player, index: next_client, order: next_order};

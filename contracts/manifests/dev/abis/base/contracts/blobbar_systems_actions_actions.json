@@ -155,16 +155,7 @@
       {
         "type": "function",
         "name": "get_client_blobert",
-        "inputs": [
-          {
-            "name": "player",
-            "type": "core::starknet::contract_address::ContractAddress"
-          },
-          {
-            "name": "index",
-            "type": "core::integer::u32"
-          }
-        ],
+        "inputs": [],
         "outputs": [
           {
             "type": "core::byte_array::ByteArray"

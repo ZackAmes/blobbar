@@ -63,15 +63,15 @@ export async function setupWorld(provider: DojoProvider) {
             }
         }
 
-        const get_client_blobert = async (account:AccountInterface, index: number) => {
+        const get_client_blobert = async () => {
             try {
-                return await provider.call(contract_name, "get_random_blobert", [account.address, index])
+                return await provider.call(contract_name, "get_random_blobert", [])
             } catch(error) {
                 console.error("Error executing move:", error);
                 throw error;
             }
         }
-        return { spawn,start_level, move,get_random_blobert, start_level, get_client_blobert };
+        return { spawn,start_level, move,get_random_blobert, get_client_blobert };
     }
     return {
         actions: actions(),

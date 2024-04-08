@@ -1203,8 +1203,8 @@
     {
       "kind": "DojoContract",
       "address": "0x3dd4f36c116335afd65dd8b8603c548101eb2bf476b971021528ba31f2f1f9c",
-      "class_hash": "0x74d61aed8e52086109bef12b3e24fe3f2a0217d15eecf6d070845685818349a",
-      "original_class_hash": "0x74d61aed8e52086109bef12b3e24fe3f2a0217d15eecf6d070845685818349a",
+      "class_hash": "0x18ee32221f4828d29688f6f22af7596a28119c9f9b22b8205f1ea6a45cafee4",
+      "original_class_hash": "0x18ee32221f4828d29688f6f22af7596a28119c9f9b22b8205f1ea6a45cafee4",
       "base_class_hash": "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76",
       "abi": [
         {
@@ -1311,88 +1311,6 @@
           ]
         },
         {
-          "type": "enum",
-          "name": "blobbar::models::types::DrinkType",
-          "variants": [
-            {
-              "name": "None",
-              "type": "()"
-            },
-            {
-              "name": "Ew",
-              "type": "()"
-            },
-            {
-              "name": "Grog",
-              "type": "()"
-            },
-            {
-              "name": "Mead",
-              "type": "()"
-            },
-            {
-              "name": "Whiskey",
-              "type": "()"
-            },
-            {
-              "name": "Soda",
-              "type": "()"
-            },
-            {
-              "name": "Juice",
-              "type": "()"
-            },
-            {
-              "name": "MeadSprtiz",
-              "type": "()"
-            },
-            {
-              "name": "KnightsSpritz",
-              "type": "()"
-            },
-            {
-              "name": "RoyalHoneyedNectar",
-              "type": "()"
-            },
-            {
-              "name": "NobleNectar",
-              "type": "()"
-            },
-            {
-              "name": "CastleCitrusFizz",
-              "type": "()"
-            },
-            {
-              "name": "RegalRefresher",
-              "type": "()"
-            },
-            {
-              "name": "MonarchsMingle",
-              "type": "()"
-            },
-            {
-              "name": "CourtlyCooler",
-              "type": "()"
-            },
-            {
-              "name": "WizardsWhirl",
-              "type": "()"
-            },
-            {
-              "name": "MajesticMetheglin",
-              "type": "()"
-            },
-            {
-              "name": "SovereignSwirl",
-              "type": "()"
-            },
-            {
-              "name": "ChivalrousChalice",
-              "type": "()"
-            }
-          ]
-        },
-        {
           "type": "interface",
           "name": "blobbar::systems::actions::IActions",
           "items": [
@@ -1445,16 +1363,7 @@
             {
               "type": "function",
               "name": "get_client_blobert",
-              "inputs": [
-                {
-                  "name": "player",
-                  "type": "core::starknet::contract_address::ContractAddress"
-                },
-                {
-                  "name": "index",
-                  "type": "core::integer::u32"
-                }
-              ],
+              "inputs": [],
               "outputs": [
                 {
                   "type": "core::byte_array::ByteArray"
@@ -1477,7 +1386,7 @@
               ],
               "outputs": [
                 {
-                  "type": "blobbar::models::types::DrinkType"
+                  "type": "core::integer::u8"
                 }
               ],
               "state_mutability": "view"
@@ -1950,7 +1859,7 @@
         },
         {
           "name": "serving",
-          "type": "DrinkType",
+          "type": "u8",
           "key": false
         },
         {
@@ -1974,8 +1883,8 @@
           "key": false
         }
       ],
-      "class_hash": "0x81f51de83467639dfe38bb57db63fff3b91220591894405514e92c2d9d7a0a",
-      "original_class_hash": "0x81f51de83467639dfe38bb57db63fff3b91220591894405514e92c2d9d7a0a",
+      "class_hash": "0x6d671d3df25f33a6994e65a3160b8874633769fc85d19d3a6a668ea375fdf90",
+      "original_class_hash": "0x6d671d3df25f33a6994e65a3160b8874633769fc85d19d3a6a668ea375fdf90",
       "abi": [
         {
           "type": "impl",
@@ -2191,88 +2100,6 @@
           ]
         },
         {
-          "type": "enum",
-          "name": "blobbar::models::types::DrinkType",
-          "variants": [
-            {
-              "name": "None",
-              "type": "()"
-            },
-            {
-              "name": "Ew",
-              "type": "()"
-            },
-            {
-              "name": "Grog",
-              "type": "()"
-            },
-            {
-              "name": "Mead",
-              "type": "()"
-            },
-            {
-              "name": "Whiskey",
-              "type": "()"
-            },
-            {
-              "name": "Soda",
-              "type": "()"
-            },
-            {
-              "name": "Juice",
-              "type": "()"
-            },
-            {
-              "name": "MeadSprtiz",
-              "type": "()"
-            },
-            {
-              "name": "KnightsSpritz",
-              "type": "()"
-            },
-            {
-              "name": "RoyalHoneyedNectar",
-              "type": "()"
-            },
-            {
-              "name": "NobleNectar",
-              "type": "()"
-            },
-            {
-              "name": "CastleCitrusFizz",
-              "type": "()"
-            },
-            {
-              "name": "RegalRefresher",
-              "type": "()"
-            },
-            {
-              "name": "MonarchsMingle",
-              "type": "()"
-            },
-            {
-              "name": "CourtlyCooler",
-              "type": "()"
-            },
-            {
-              "name": "WizardsWhirl",
-              "type": "()"
-            },
-            {
-              "name": "MajesticMetheglin",
-              "type": "()"
-            },
-            {
-              "name": "SovereignSwirl",
-              "type": "()"
-            },
-            {
-              "name": "ChivalrousChalice",
-              "type": "()"
-            }
-          ]
-        },
-        {
           "type": "struct",
           "name": "blobbar::blobert::types::seeder::Seed",
           "members": [
@@ -2316,7 +2143,7 @@
             },
             {
               "name": "serving",
-              "type": "blobbar::models::types::DrinkType"
+              "type": "core::integer::u8"
             },
             {
               "name": "clients_served",
@@ -2378,12 +2205,12 @@
         },
         {
           "name": "order",
-          "type": "DrinkType",
+          "type": "u8",
           "key": false
         }
       ],
-      "class_hash": "0xcbd2af6cfa4211331819d0a80ae1785bc9083339d1c06524533c92761e0732",
-      "original_class_hash": "0xcbd2af6cfa4211331819d0a80ae1785bc9083339d1c06524533c92761e0732",
+      "class_hash": "0xaecb2a72930d9e500fe399b1e9b2fb5e9dd83b7d1d78822cd2c4b2ef089f2e",
+      "original_class_hash": "0xaecb2a72930d9e500fe399b1e9b2fb5e9dd83b7d1d78822cd2c4b2ef089f2e",
       "abi": [
         {
           "type": "impl",
@@ -2559,88 +2386,6 @@
           "interface_name": "blobbar::models::blobtender::Icurrent_client"
         },
         {
-          "type": "enum",
-          "name": "blobbar::models::types::DrinkType",
-          "variants": [
-            {
-              "name": "None",
-              "type": "()"
-            },
-            {
-              "name": "Ew",
-              "type": "()"
-            },
-            {
-              "name": "Grog",
-              "type": "()"
-            },
-            {
-              "name": "Mead",
-              "type": "()"
-            },
-            {
-              "name": "Whiskey",
-              "type": "()"
-            },
-            {
-              "name": "Soda",
-              "type": "()"
-            },
-            {
-              "name": "Juice",
-              "type": "()"
-            },
-            {
-              "name": "MeadSprtiz",
-              "type": "()"
-            },
-            {
-              "name": "KnightsSpritz",
-              "type": "()"
-            },
-            {
-              "name": "RoyalHoneyedNectar",
-              "type": "()"
-            },
-            {
-              "name": "NobleNectar",
-              "type": "()"
-            },
-            {
-              "name": "CastleCitrusFizz",
-              "type": "()"
-            },
-            {
-              "name": "RegalRefresher",
-              "type": "()"
-            },
-            {
-              "name": "MonarchsMingle",
-              "type": "()"
-            },
-            {
-              "name": "CourtlyCooler",
-              "type": "()"
-            },
-            {
-              "name": "WizardsWhirl",
-              "type": "()"
-            },
-            {
-              "name": "MajesticMetheglin",
-              "type": "()"
-            },
-            {
-              "name": "SovereignSwirl",
-              "type": "()"
-            },
-            {
-              "name": "ChivalrousChalice",
-              "type": "()"
-            }
-          ]
-        },
-        {
           "type": "struct",
           "name": "blobbar::models::blobtender::CurrentClient",
           "members": [
@@ -2654,7 +2399,7 @@
             },
             {
               "name": "order",
-              "type": "blobbar::models::types::DrinkType"
+              "type": "core::integer::u8"
             }
           ]
         },

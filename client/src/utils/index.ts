@@ -28,6 +28,19 @@ export function updatePositionWithDirection(
     return value;
 }
 
+export const get_drink = (id: number) => {
+    if(id == 0) return "none"
+    if(id == 1) return "EW"
+    if(id == 2) return "Grog"
+    if(id == 3) return "Mead"
+    if(id == 4) return "Whiskey"
+    if(id == 5) return "Soda"
+    if(id == 6) return "Juice"
+    if(id < 19) return recipes[id-2][2]
+    else return "out of range" 
+
+}
+
 export const recipes: Array<[string,string,string]> = [
     ["Grog", "", ""],
     ["Mead", "", ""],

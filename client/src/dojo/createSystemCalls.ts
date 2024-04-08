@@ -81,8 +81,8 @@ export function createSystemCalls(
         return res;
     }
 
-    const client_blobert = async (account: AccountInterface, index: number) => {
-        const res = await client.actions.get_client_blobert(account, index);
+    const client_blobert = async () => {
+        const res = await client.actions.get_client_blobert();
         return res
     }
 

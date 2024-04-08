@@ -12,7 +12,7 @@ trait IActions {
     fn move(direction: Direction);
     fn set_addresses(seeder: ContractAddress, descriptor: ContractAddress);
     fn get_random_blobert() -> ByteArray;
-    fn get_client_blobert(player: ContractAddress, index: u32) -> ByteArray;
+    fn get_client_blobert() -> ByteArray;
     fn get_client_order(player: ContractAddress, index: u32) -> u8;
     fn get_queue_size(player: ContractAddress) -> u32;
     fn start_level();
@@ -126,12 +126,12 @@ mod actions {
 
         }
 
-        fn get_client_blobert(world: IWorldDispatcher, player: ContractAddress, index: u32) -> ByteArray{
-            let blobtender = get!(world, player, (Blobtender));
+        fn get_client_blobert(world: IWorldDispatcher) -> ByteArray{
             let addresses = get!(world, ADDRESS_KEY, (Addresses));
-            let Seeder = ISeederDispatcher {contract_address: addresses.seeder };
-            let Descriptor = IDescriptorDispatcher {contract_address: addresses.seeder};
-            let seed = Seeder.generate_seed(addresses.descriptor, blobtender.level, blobtender.start_time, index, player.into());
+            let Seeder = ISeederDispatcher {contract_address: addresses.seeder};
+            let Descriptor = IDescriptorDispatcher {contract_address: addresses.descriptor};
+            let salt:felt252 = addresses.seeder.into();
+            let seed: Seed = Seeder.generate_seed(addresses.descriptor,Level::One, get_block_timestamp(),1, salt);
             Descriptor.svg_image(seed)
         }
 
@@ -228,7 +228,7 @@ mod actions {
             },
             Status::InProgress => {
                 if(correct) {
-                    println!("served");
+                    //???????? why is this not working??????????
                     blobtender.clients_served+=1;
                     blobtender.serving=0;
                     let next_client = blobtender.clients_served+1;

@@ -3,7 +3,7 @@ import {Canvas, useThree} from "@react-three/fiber";
 import {Box, Plane, OrbitControls} from "@react-three/drei";
 import * as THREE from "three";
 import Blobert from "./Blobert";
-import Recipe from "./Recipe";
+import Recipes from "./Recipes";
 import { recipes } from "../utils";
 interface BarProps {
     blob_position: [number, number, number]
@@ -74,8 +74,8 @@ const Bar: FC<BarProps> = ({blob_position, get_blobert}) => {
               <meshBasicMaterial color="purple"/>
             </mesh>
 
-            <Recipe position = {[5,10,5]} recipe = {recipes[0]}/>
-            <Recipe position = {[15,10,5]} recipe = {recipes[15]}/>
+    
+            <Recipes position={[15,10,5]}/>
 
             <Blobert position={blob_position} get_blobert={get_blobert} />
 

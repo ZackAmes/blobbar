@@ -5,17 +5,18 @@ import { Text, Box } from "@react-three/drei"
 interface ButtonProps {
     label: string,
     onClick: any,
-    position: [number, number, number]
+    position: [number, number, number],
+    rotation: any
 }
 
-const Button: FC<ButtonProps> = ({label, onClick, position}) => {
+const Button: FC<ButtonProps> = ({label, onClick, position, rotation}) => {
 
     return (
-        <group onClick= {onClick} position = {position}>
-            <Box args = {[3, .1, 1]}>
+        <group rotation= {rotation} onClick= {onClick} position = {position}>
+            <Box scale={1.5} args = {[1, .1, 1]}>
                 <meshBasicMaterial color="black" />
             </Box>
-            <Text position = {[position[0], position[1]+.1, position[2]]}>
+            <Text scale={1.75} position = {[0, .5, 0]}>
                 <meshBasicMaterial color = "white"/>
                 {label}
             </Text>

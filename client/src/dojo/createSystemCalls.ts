@@ -47,9 +47,43 @@ export function createSystemCalls(
         } 
     };
 
+    const start_level = async (account: AccountInterface) => {
+        const entityId = getEntityIdFromKeys([
+            BigInt(account.address),
+        ]) as Entity;
+
+        try {
+            const { transaction_hash } = await client.actions.start_level({
+                account,
+            });
+
+            console.log(
+                await account.waitForTransaction(transaction_hash, {
+                    retryInterval: 100,
+                })
+            );
+
+            setComponentsFromEvents(
+                contractComponents,
+                getEvents(
+                    await account.waitForTransaction(transaction_hash, {
+                        retryInterval: 100,
+                    })
+                )
+            );
+        } catch (e) {
+            console.log(e);
+        } 
+    };
+
     const blobert = async () => {
         const res = await client.actions.get_random_blobert();
         return res;
+    }
+
+    const client_blobert = async (account: AccountInterface, index: number) => {
+        const res = await client.actions.get_client_blobert(account, index);
+        return res
     }
 
     const move = async (account: AccountInterface, direction: Direction) => {
@@ -80,6 +114,8 @@ export function createSystemCalls(
     return {
         spawn,
         move,
-        blobert
+        blobert,
+        client_blobert,
+        start_level
     };
 }

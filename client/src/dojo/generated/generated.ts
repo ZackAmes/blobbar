@@ -29,6 +29,20 @@ export async function setupWorld(provider: DojoProvider) {
             }
         };
 
+        const start_level = async ({ account }: { account: AccountInterface }) => {
+            try {
+                return await provider.execute(
+                    account,
+                    contract_name,
+                    "start_level",
+                    []
+                );
+            } catch (error) {
+                console.error("Error executing start level:", error);
+                throw error;
+            }
+        };
+
         const move = async ({ account, direction }: MoveProps) => {
             try {
                 return await provider.execute(account, contract_name, "move", [
@@ -48,7 +62,16 @@ export async function setupWorld(provider: DojoProvider) {
                 throw error;
             }
         }
-        return { spawn, move,get_random_blobert };
+
+        const get_client_blobert = async (account:AccountInterface, index: number) => {
+            try {
+                return await provider.call(contract_name, "get_random_blobert", [account.address, index])
+            } catch(error) {
+                console.error("Error executing move:", error);
+                throw error;
+            }
+        }
+        return { spawn,start_level, move,get_random_blobert, start_level, get_client_blobert };
     }
     return {
         actions: actions(),

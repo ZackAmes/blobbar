@@ -82,7 +82,7 @@ mod actions {
         fn move(world: IWorldDispatcher, direction: Direction) {
             let player = get_caller_address();
             let mut blobtender = get!(world, player, (Blobtender));
-            assert!(blobtender.level != Level::None, "not spawned");
+            assert!(blobtender.level != Level::None, "level not started");
             let mut next_pos: Vec2 = blobtender.position;
             match direction {
                 Direction::None => {

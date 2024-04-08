@@ -17,6 +17,9 @@ echo "--------------------------------------------------------------------------
 # enable system -> models authorizations
 sozo auth grant --world $WORLD_ADDRESS --wait writer \
   Blobtender,$ACTIONS_ADDRESS \
+  CurrentClient,$ACTIONS_ADDRESS \
+  CurrentStatus,$ACTIONS_ADDRESS \
+
   >/dev/null
 
 echo "Default authorizations have been successfully set."

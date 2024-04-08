@@ -6,11 +6,6 @@ interface RecipeProps {
 }
 
 const Recipe: FC<RecipeProps> = ({position, recipe}) => {
-    let x = position[0];
-    let y = position[1];
-    let z = position[2];
-    let offset = 0;
-    console.log(recipe)
     return (
         <group  position={position}>
             <Text color="black"> {recipe[1] == "" ? recipe[0] : recipe[0] + " + "} </Text>
